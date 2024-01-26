@@ -9,24 +9,38 @@ function Hero() {
       <div className='absolute inset-0 h-full w-full bg-gray-900/60' />
       <div className='grid min-h-screen px-8'>
         <div className='container relative z-10 my-auto mx-auto grid place-items-center text-center'>
-          <Typography variant='h3' color='white' className='mb-2'>
+          <Typography
+            variant='h2'
+            color='blue'
+            className='mb-2'
+            placeholder={undefined}
+          >
             Le Mariage de
           </Typography>
-          <Typography variant='h1' color='blue' className='lg:max-w-3xl'>
+          <Typography
+            variant='h1'
+            color='blue'
+            className='lg:max-w-3xl'
+            placeholder={undefined}
+          >
             Jennifer &amp; Mickaël
           </Typography>
           <Typography
-            variant='lead'
-            color='white'
+            variant='h2'
+            color='cyan'
             className='mt-1 mb-12 w-full md:max-w-full lg:max-w-2xl'
+            placeholder={undefined}
           >
-            21 Septembre 2024
+            21.09.2024
           </Typography>
           <div className='flex items-center gap-4'>
-            <Button variant='gradient' color='white'>
+            <Button variant='gradient' color='white' placeholder={undefined}>
               Get started
             </Button>
-            <IconButton className='rounded-full bg-white p-6'>
+            <IconButton
+              className='rounded-full bg-white p-6'
+              placeholder={undefined}
+            >
               <PlayIcon className='h-4 w-4 text-gray-900' />
             </IconButton>
           </div>
