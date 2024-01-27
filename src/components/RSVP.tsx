@@ -6,14 +6,6 @@ import serverAction from '@/backend/onSubmitAction'
 
 const RSVP = () => {
   const isValid = undefined
-  const formData = {
-    lastName: undefined,
-    firstName: undefined,
-    email: undefined,
-    phone: undefined,
-    people: undefined,
-    message: undefined,
-  }
 
   return (
     <section className='container mx-auto flex flex-col items-center px-4 py-10'>
@@ -24,7 +16,7 @@ const RSVP = () => {
           color='indigo'
           className='mb-4 w-80'
           label='Nom'
-          value={formData.lastName}
+          name='lastName'
           crossOrigin={undefined}
         />
         <Input
@@ -32,7 +24,7 @@ const RSVP = () => {
           color='teal'
           className='mb-4 w-80'
           label='Prénom'
-          value={formData.firstName}
+          name='firstName'
           crossOrigin={undefined}
         />
         <Input
@@ -40,7 +32,7 @@ const RSVP = () => {
           color='deep-purple'
           className='mb-4 w-80'
           label='Email'
-          value={formData.email}
+          name='email'
           crossOrigin={isValid ? 'anonymous' : 'use-credentials'}
         />
         <Input
@@ -48,7 +40,7 @@ const RSVP = () => {
           color='light-blue'
           className='mb-4 w-80'
           label='Téléphone'
-          value={formData.phone}
+          name='phone'
           crossOrigin={undefined}
         />
         <Input
@@ -56,7 +48,7 @@ const RSVP = () => {
           color='blue'
           className='mb-4 w-80'
           label='Nombre de personnes'
-          value={formData.people}
+          name='people'
           crossOrigin={undefined}
         />
         <Input
@@ -64,7 +56,7 @@ const RSVP = () => {
           color='blue'
           className='mb-4 w-80'
           label='Message'
-          value={formData.message}
+          name='message'
           crossOrigin={isValid ? 'anonymous' : 'use-credentials'}
         />
 

@@ -1,9 +1,14 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
+
 const serverAction = async (formData: FormData) => {
-  console.log(formData)
+  const firstName = formData.get('firstName')
+  const lastName = formData.get('lastName')
+
+  console.log(firstName, lastName)
   const result = { message: 'onSumbitAction', status: 'success' }
-  return result
+  revalidatePath('/')
 }
 
 export default serverAction
