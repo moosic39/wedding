@@ -16,7 +16,7 @@ import { Sign } from 'crypto'
 import { Signika } from 'next/font/google'
 import Signin from '@/components/Signin'
 
-export default function Portfolio() {
+export default function Home() {
   return (
     <>
       <Navbar />
@@ -29,7 +29,7 @@ export default function Portfolio() {
       <Signin />
       <RSVP />
       {/* <OurStats /> */}
-      <EventContent />
+      {/* <EventContent /> */}
       {/* <Faq /> */}
       <Footer />
     </>

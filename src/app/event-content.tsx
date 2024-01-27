@@ -36,17 +36,32 @@ export function EventContent() {
     <section className='py-8 px-8 lg:py-20'>
       <Tabs value='Day1' className='mb-8'>
         <div className='w-full flex mb-8 flex-col items-center'>
-          <TabsHeader className='h-12 w-72 md:w-96'>
-            <Tab value='Day1' className='font-medium'>
+          <TabsHeader className='h-12 w-72 md:w-96' placeholder={''}>
+            <Tab value='Day1' className='font-medium' placeholder={''}>
               Day 1
             </Tab>
-            <Tab value='Day2' className='font-medium'>
+            <Tab value='Day2' className='font-medium' placeholder={''}>
               Day 2
             </Tab>
-            <Tab value='Day3' className='font-medium'>
+            <Tab value='Day3' className='font-medium' placeholder={''}>
               Day 3
             </Tab>
           </TabsHeader>
+          <TabsBody>
+            <Card className='w-full'>
+              <Card.Body>
+                <div className='flex flex-col items-center'>
+                  <h3 className='text-2xl font-medium mb-4'>
+                    Day 1: 10th June 2021
+                  </h3>
+                  <p className='text-gray-500 text-center mb-8'>
+                    Join us for a day of inspiring talks, informative workshops,
+                    and engaging panel discussions.
+                  </p>
+                </div>
+              </Card.Body>
+            </Card>
+          </TabsBody>
         </div>
       </Tabs>
       <div className='mx-auto container'>
