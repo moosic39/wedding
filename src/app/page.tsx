@@ -23,10 +23,10 @@ export default function Home() {
       <Hero />
       {/* <SponsoredBy /> */}
       <Countdown />
-      <AboutEvent />
+      {/* <AboutEvent /> */}
       <EventPlace />
       <Bio />
-      <Signin />
+      {/* <Signin /> */}
       <RSVP />
       {/* <OurStats /> */}
       {/* <EventContent /> */}

@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className='pb-5 p-10 md:pt-10'>
       <div className='container flex flex-col mx-auto'>
-        <div className='flex !w-full py-10 mb-5 md:mb-20 flex-col justify-center !items-center bg-gray-900 max-w-6xl mx-auto rounded-2xl p-5 '>
+        {/* <div className='flex !w-full py-10 mb-5 md:mb-20 flex-col justify-center !items-center bg-gray-900 max-w-6xl mx-auto rounded-2xl p-5 '>
           <Typography
             className='text-2xl md:text-3xl text-center font-bold '
             color='white'
@@ -27,7 +27,7 @@ export function Footer() {
               buy ticket
             </Button>
           </div>
-        </div>
+        </div> */}
         <div className='flex flex-col md:flex-row items-center !justify-between'>
           <Typography
             as='a'
