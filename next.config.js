@@ -10,7 +10,7 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ["jegat-dasilva.fr", 'moosic.fr', 'localhost']
+      allowedOrigins: ["www.jegat-dasilva.fr", 'www.moosic.fr', 'localhost']
     }
   }
 };
