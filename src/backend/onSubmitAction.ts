@@ -1,6 +1,6 @@
 'use server'
 
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, User } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
 
 const serverAction = async (formData: FormData) => {
@@ -24,7 +24,7 @@ const serverAction = async (formData: FormData) => {
     plusOneLastName,
     dietaryRestriction,
     message,
-  } as Record<string, string>
+  } as unknown as User
 
   console.log(data)
   const prisma = new PrismaClient()
