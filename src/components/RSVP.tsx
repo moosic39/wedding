@@ -1,16 +1,37 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Button, Input } from '@material-tailwind/react'
 import serverAction from '@/backend/onSubmitAction'
 import Title from './ui-components/atom/Title'
+import { useRouter } from 'next/navigation'
 
 const RSVP = () => {
-  const isValid = undefined
+  const routeur = useRouter()
+  const [isValid, setIsValid] = useState<boolean>()
+  const [message, setMessage] = useState<string>()
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.target as HTMLFormElement
+    const formData = new FormData(form)
+    const data = Object.fromEntries(formData.entries())
+    console.log(data)
+    const { message, status } = await serverAction(formData)
+    if (status === 'error') {
+      setIsValid(false)
+      setMessage(message)
+    }
+    if (status === 'success') {
+      setIsValid(true)
+      setMessage(message)
+    }
+    routeur.push('/#rsvp')
+  }
 
   return (
     <section className='container mx-auto flex flex-col items-center px-4 py-10'>
-      <form action={serverAction} className='flex flex-col items-center'>
+      <form onSubmit={onSubmit} className='flex flex-col items-center'>
         <Title title='Vous êtes invité' />
         <Input
           type='text'
@@ -30,7 +51,7 @@ const RSVP = () => {
         />
         <Input
           type='text'
-          color='deep-purple'
+          color='blue'
           className='mb-4 w-80'
           label='Email'
           name='email'
@@ -95,6 +116,17 @@ const RSVP = () => {
         >
           Submit
         </Button>
+        {message && (
+          <div className='mt-4'>
+            <p
+              className={`text-center text-lg ${
+                isValid ? 'text-green-500' : 'text-red-500'
+              }`}
+            >
+              {message}
+            </p>
+          </div>
+        )}
       </form>
     </section>
   )

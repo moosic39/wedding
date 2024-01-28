@@ -29,18 +29,28 @@ const serverAction = async (formData: FormData) => {
   console.log(data)
   const prisma = new PrismaClient()
   console.log('connect')
-  await prisma.user
-    .create({ data })
-    .catch(async (e: Error) => {
-      console.error(e)
-      process.exit(1)
-    })
-    .finally(async () => {
-      console.log('disconnect')
-      await prisma.$disconnect()
-    })
 
-  revalidatePath('/')
+  const existingMail = await prisma.user.findUnique({
+    where: { email: email as string },
+  })
+
+  if (existingMail?.email === email) {
+    console.log('disconnect')
+    await prisma.$disconnect()
+    return { message: 'Mail déjà existant', status: 'error' }
+  } else {
+    await prisma.user
+      .create({ data })
+      .catch(async (e: Error) => {
+        console.error(e)
+        process.exit(1)
+      })
+      .finally(async () => {
+        console.log('disconnect')
+        await prisma.$disconnect()
+      })
+    return { message: 'Merci de votre réponse', status: 'success' }
+  }
 }
 
 export default serverAction
