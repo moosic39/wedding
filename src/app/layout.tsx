@@ -2,6 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import { Layout, FixedPlugin } from '@/components'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -25,7 +27,7 @@ export default function RootLayout({
       <head>
         <script
           defer
-          data-site='YOUR_DOMAIN_HERE'
+          data-site='jegat-dasilva.fr'
           src='https://api.nepcha.com/js/nepcha-analytics.js'
         ></script>
         <link rel='shortcut icon' href='/favicon.png' type='image/png' />
@@ -42,6 +44,8 @@ export default function RootLayout({
           crossOrigin='anonymous'
           referrerPolicy='no-referrer'
         />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
