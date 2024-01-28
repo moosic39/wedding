@@ -73,7 +73,7 @@ const RSVP = () => {
           color='blue'
           className='mb-4 w-80'
           label='Restrictions alimentaires'
-          name='dietaryRestrictions'
+          name='dietaryRestriction'
           crossOrigin={undefined}
         />
         <Input

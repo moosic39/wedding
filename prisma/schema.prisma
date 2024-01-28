@@ -12,9 +12,8 @@ model User {
   email              String   @unique
   firstName          String
   lastName           String
-  email              String
-  presence           Boolean
-  plusOne            Boolean
+  presence           String
+  plusOne            String
   plusOneFirstName   String?
   plusOneLastName    String?
   dietaryRestriction String?
