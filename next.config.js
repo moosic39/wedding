@@ -8,6 +8,11 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["jegat-dasilva.fr", 'moosic.fr', 'localhost']
+    }
+  }
 };
 
 module.exports = nextConfig;
