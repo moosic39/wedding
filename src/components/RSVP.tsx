@@ -1,11 +1,17 @@
 'use client'
 import React, { useState } from 'react'
 
-import { Button, Checkbox, Input, Radio } from '@material-tailwind/react'
+import {
+  Button,
+  Checkbox,
+  Input,
+  Radio,
+  Typography,
+} from '@material-tailwind/react'
 import serverAction from '@/backend/onSubmitAction'
-import Title from './ui-components/atom/Title'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { Container, Title } from './ui-components/atom'
 
 const RSVP = () => {
   const router = useRouter()
@@ -50,137 +56,149 @@ const RSVP = () => {
       className='container mx-auto flex flex-col items-center px-4 py-10'
       id='rsvp'
     >
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className='flex flex-col items-center'
-      >
-        <Title title='Vous êtes invité' />
-        <Input
-          type='text'
-          color='indigo'
-          className='mb-4 w-80'
-          label='Nom'
-          crossOrigin={undefined}
-          {...register('lastName', { required: true })}
-          required
-        />
-        <Input
-          type='text'
-          color='teal'
-          className='mb-4 w-80'
-          label='Prénom'
-          crossOrigin={undefined}
-          {...register('firstName', { required: true })}
-          required
-        />
-        <Input
-          type='text'
-          color='blue'
-          className='mb-4 w-80'
-          label='Email'
-          crossOrigin={undefined}
-          {...register('email', { required: true })}
-          required
-        />
-        <label>
-          <Radio
-            color='blue'
-            label='Je serai présent'
-            value='present'
-            id='present'
-            defaultChecked={false}
-            crossOrigin={undefined}
-            {...register('presence', { required: true })}
-          />
-          <Radio
-            color='blue'
-            label='Je serai absent'
-            value='absent'
-            id='absent'
-            defaultChecked={true}
-            crossOrigin={undefined}
-            {...register('presence', { required: true })}
-          />
-        </label>
-        <Checkbox
-          color='blue'
-          label='Je serai accompagné(e)'
-          id='plusOne'
-          defaultChecked={false}
-          crossOrigin={undefined}
-          {...register('plusOne')}
-        />
-        {isPlusOne && (
-          <>
-            <Input
-              type='text'
-              color='indigo'
-              className='mb-4 w-80'
-              label='Nom de la personne invitée'
-              crossOrigin={undefined}
-              {...register('plusOneLastName')}
-            />
+      <Title title='Vous êtes invités' />
+      <Container className='w-full gap-4'>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className='flex flex-col items-center'
+        >
+          <div className='my-4 flex w-full gap-4'>
             <Input
               type='text'
               color='teal'
-              className='mb-4 w-80'
-              label='Prénom de la personne invitée'
+              className=''
+              label='Prénom'
               crossOrigin={undefined}
-              {...register('plusOneFirstName')}
+              {...register('firstName', { required: true })}
+              required
             />
-          </>
-        )}
-        <Checkbox
-          color='blue'
-          label='Resctictions alimentaires'
-          id='isDietaryRestriction'
-          defaultChecked={false}
-          crossOrigin={undefined}
-          {...register('isDietaryRestriction')}
-        />
-
-        {isDietaryRestriction && (
+            <Input
+              type='text'
+              color='indigo'
+              className=''
+              label='Nom'
+              crossOrigin={undefined}
+              {...register('lastName', { required: true })}
+              required
+            />
+          </div>
           <Input
             type='text'
             color='blue'
-            className='mb-4 w-80'
-            label='Restrictions alimentaires'
+            className=''
+            label='Email'
             crossOrigin={undefined}
-            {...register('dietaryRestriction')}
+            {...register('email', { required: true })}
+            required
           />
-        )}
-
-        <Input
-          type='text'
-          color='blue'
-          className='mb-4 w-80'
-          label='Message'
-          crossOrigin={undefined}
-          {...register('message')}
-        />
-
-        <Button
-          color='blue'
-          type='submit'
-          placeholder=''
-          onSubmit={(e) => {
-            e.preventDefault()
-          }}
-        >
-          Submit
-        </Button>
-        {message && (
-          <div className='mt-4'>
-            <p
-              className={`text-center text-lg ${
-                isValid ? 'text-green-500' : 'text-red-500'
-              }`}
-            >
-              {message}
-            </p>
+          <div className='w-full flex end-4'>
+            <Radio
+              color='blue'
+              label='Je serai présent'
+              value='present'
+              id='present'
+              defaultChecked={false}
+              crossOrigin={undefined}
+              {...register('presence', { required: true })}
+            />
+            <Radio
+              color='blue'
+              label='Je serai absent'
+              value='absent'
+              id='absent'
+              defaultChecked={true}
+              crossOrigin={undefined}
+              {...register('presence', { required: true })}
+            />
           </div>
-        )}
-      </form>
+          <div className='w-full'>
+            <Checkbox
+              color='blue'
+              label='Je serai accompagné(e)'
+              id='plusOne'
+              defaultChecked={false}
+              className=''
+              crossOrigin={undefined}
+              {...register('plusOne')}
+            />
+          </div>
+
+          {isPlusOne && (
+            <div className='my-4 flex w-full gap-4'>
+              <Input
+                type='text'
+                color='teal'
+                className=''
+                label="Prénom de l'invité(e)"
+                crossOrigin={undefined}
+                {...register('plusOneFirstName')}
+              />
+              <Input
+                type='text'
+                color='indigo'
+                className=''
+                label="Nom de l'invité(e)"
+                crossOrigin={undefined}
+                {...register('plusOneLastName')}
+              />
+            </div>
+          )}
+          <div className='mb-4 w-full'>
+            <Checkbox
+              color='blue'
+              label='Resctictions alimentaires'
+              id='isDietaryRestriction'
+              defaultChecked={false}
+              crossOrigin={undefined}
+              {...register('isDietaryRestriction')}
+            />
+            {isDietaryRestriction && (
+              <Input
+                type='text'
+                color='blue'
+                className=''
+                label='Restrictions alimentaires'
+                crossOrigin={undefined}
+                {...register('dietaryRestriction')}
+              />
+            )}
+          </div>
+
+          <Input
+            type='text'
+            color='blue'
+            className=''
+            label='Message'
+            crossOrigin={undefined}
+            {...register('message')}
+          />
+          <Button
+            color='blue'
+            type='submit'
+            placeholder=''
+            className='m-4'
+            onSubmit={(e) => {
+              e.preventDefault()
+            }}
+          >
+            Submit
+          </Button>
+          {message && (
+            <div className='mt-4'>
+              <p
+                className={`text-center text-lg ${
+                  isValid ? 'text-green-500' : 'text-red-500'
+                }`}
+              >
+                {message}
+              </p>
+            </div>
+          )}
+        </form>
+        <Typography variant='small' placeholder={''}>
+          <span className=' text-red-500'>*</span> champs requis
+        </Typography>
+      </Container>
     </section>
   )
 }

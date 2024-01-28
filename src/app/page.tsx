@@ -22,12 +22,12 @@ export default function Home() {
       <Navbar />
       <Hero />
       {/* <SponsoredBy /> */}
+      <RSVP />
       <Countdown />
       {/* <AboutEvent /> */}
       <EventPlace />
       <Bio />
       {/* <Signin /> */}
-      <RSVP />
       {/* <OurStats /> */}
       {/* <EventContent /> */}
       {/* <Faq /> */}
