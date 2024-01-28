@@ -1,22 +1,35 @@
 'use client'
 import React, { useState } from 'react'
 
-import { Button, Input } from '@material-tailwind/react'
+import { Button, Checkbox, Input, Radio } from '@material-tailwind/react'
 import serverAction from '@/backend/onSubmitAction'
 import Title from './ui-components/atom/Title'
 import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
 
 const RSVP = () => {
-  const routeur = useRouter()
+  const router = useRouter()
   const [isValid, setIsValid] = useState<boolean>()
   const [message, setMessage] = useState<string>()
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const form = e.target as HTMLFormElement
-    const formData = new FormData(form)
-    const data = Object.fromEntries(formData.entries())
-    console.log(data)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isDirty, isValid: formIsValid },
+  } = useForm()
+
+  const onSubmit = async () => {
+    const formData = new FormData()
+    formData.append('lastName', watch('lastName'))
+    formData.append('firstName', watch('firstName'))
+    formData.append('email', watch('email'))
+    formData.append('presence', watch('presence'))
+    formData.append('plusOneLastName', watch('plusOneLastName'))
+    formData.append('plusOneFirstName', watch('plusOneFirstName'))
+    formData.append('dietaryRestriction', watch('dietaryRestriction'))
+    formData.append('message', watch('message'))
+
     const { message, status } = await serverAction(formData)
     if (status === 'error') {
       setIsValid(false)
@@ -26,84 +39,124 @@ const RSVP = () => {
       setIsValid(true)
       setMessage(message)
     }
-    routeur.push('/#rsvp')
+    router.push('/#rsvp')
   }
 
+  const isPlusOne = watch('plusOne')
+  const isDietaryRestriction = watch('isDietaryRestriction')
+
   return (
-    <section className='container mx-auto flex flex-col items-center px-4 py-10'>
-      <form onSubmit={onSubmit} className='flex flex-col items-center'>
+    <section
+      className='container mx-auto flex flex-col items-center px-4 py-10'
+      id='rsvp'
+    >
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className='flex flex-col items-center'
+      >
         <Title title='Vous êtes invité' />
         <Input
           type='text'
           color='indigo'
           className='mb-4 w-80'
           label='Nom'
-          name='lastName'
           crossOrigin={undefined}
+          {...register('lastName', { required: true })}
+          required
         />
         <Input
           type='text'
           color='teal'
           className='mb-4 w-80'
           label='Prénom'
-          name='firstName'
           crossOrigin={undefined}
+          {...register('firstName', { required: true })}
+          required
         />
         <Input
           type='text'
           color='blue'
           className='mb-4 w-80'
           label='Email'
-          name='email'
           crossOrigin={undefined}
+          {...register('email', { required: true })}
+          required
         />
-        <Input
-          type='text'
+        <label>
+          <Radio
+            color='blue'
+            label='Je serai présent'
+            value='present'
+            id='present'
+            defaultChecked={false}
+            crossOrigin={undefined}
+            {...register('presence', { required: true })}
+          />
+          <Radio
+            color='blue'
+            label='Je serai absent'
+            value='absent'
+            id='absent'
+            defaultChecked={true}
+            crossOrigin={undefined}
+            {...register('presence', { required: true })}
+          />
+        </label>
+        <Checkbox
           color='blue'
-          className='mb-4 w-80'
-          label='Présence'
-          name='presence'
+          label='Je serai accompagné(e)'
+          id='plusOne'
+          defaultChecked={false}
           crossOrigin={undefined}
+          {...register('plusOne')}
         />
-        <Input
-          type='text'
+        {isPlusOne && (
+          <>
+            <Input
+              type='text'
+              color='indigo'
+              className='mb-4 w-80'
+              label='Nom de la personne invitée'
+              crossOrigin={undefined}
+              {...register('plusOneLastName')}
+            />
+            <Input
+              type='text'
+              color='teal'
+              className='mb-4 w-80'
+              label='Prénom de la personne invitée'
+              crossOrigin={undefined}
+              {...register('plusOneFirstName')}
+            />
+          </>
+        )}
+        <Checkbox
           color='blue'
-          className='mb-4 w-80'
-          label='Invité'
-          name='plusOne'
+          label='Resctictions alimentaires'
+          id='isDietaryRestriction'
+          defaultChecked={false}
           crossOrigin={undefined}
+          {...register('isDietaryRestriction')}
         />
-        <Input
-          type='text'
-          color='indigo'
-          className='mb-4 w-80'
-          label='Nom de la personne invitée'
-          name='plusOneLastName'
-          crossOrigin={undefined}
-        />
-        <Input
-          type='text'
-          color='teal'
-          className='mb-4 w-80'
-          label='Prénom de la personne invitée'
-          name='plusOneFirstName'
-          crossOrigin={undefined}
-        />
-        <Input
-          type='text'
-          color='blue'
-          className='mb-4 w-80'
-          label='Restrictions alimentaires'
-          name='dietaryRestriction'
-          crossOrigin={undefined}
-        />
+
+        {isDietaryRestriction && (
+          <Input
+            type='text'
+            color='blue'
+            className='mb-4 w-80'
+            label='Restrictions alimentaires'
+            crossOrigin={undefined}
+            {...register('dietaryRestriction')}
+          />
+        )}
+
         <Input
           type='text'
           color='blue'
           className='mb-4 w-80'
           label='Message'
-          name='message'
           crossOrigin={undefined}
+          {...register('message')}
         />
 
         <Button

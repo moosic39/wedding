@@ -1,14 +1,12 @@
 'use server'
 
 import { PrismaClient, User } from '@prisma/client'
-import { revalidatePath } from 'next/cache'
 
 const serverAction = async (formData: FormData) => {
   const firstName = formData.get('firstName')
   const lastName = formData.get('lastName')
   const email = formData.get('email')
   const presence = formData.get('presence')
-  const plusOne = formData.get('plusOne')
   const plusOneFirstName = formData.get('plusOneFirstName')
   const plusOneLastName = formData.get('plusOneLastName')
   const dietaryRestriction = formData.get('dietaryRestriction')
@@ -19,7 +17,6 @@ const serverAction = async (formData: FormData) => {
     lastName,
     email,
     presence,
-    plusOne,
     plusOneFirstName,
     plusOneLastName,
     dietaryRestriction,
@@ -31,7 +28,9 @@ const serverAction = async (formData: FormData) => {
   console.log('connect')
 
   const existingMail = await prisma.user.findUnique({
-    where: { email: email as string },
+    where: {
+      email: email as string,
+    },
   })
 
   if (existingMail?.email === email) {

@@ -8,12 +8,11 @@ generator client {
 }
 
 model User {
-  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
-  email              String   @unique
+  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
+  email              String  @unique
   firstName          String
   lastName           String
   presence           String
-  plusOne            String
   plusOneFirstName   String?
   plusOneLastName    String?
   dietaryRestriction String?
