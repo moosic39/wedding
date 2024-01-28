@@ -1,6 +1,13 @@
 'use client'
 
-import { Card, Tab, Tabs, TabsBody, TabsHeader } from '@material-tailwind/react'
+import {
+  Card,
+  CardBody,
+  Tab,
+  Tabs,
+  TabsBody,
+  TabsHeader,
+} from '@material-tailwind/react'
 
 import EventContentCard from '@/components/event-content-card'
 
@@ -47,9 +54,9 @@ export function EventContent() {
               Day 3
             </Tab>
           </TabsHeader>
-          <TabsBody>
-            <Card className='w-full'>
-              <Card.Body>
+          <TabsBody placeholder={''}>
+            <Card className='w-full' placeholder={''}>
+              <CardBody placeholder={''}>
                 <div className='flex flex-col items-center'>
                   <h3 className='text-2xl font-medium mb-4'>
                     Day 1: 10th June 2021
@@ -59,7 +66,7 @@ export function EventContent() {
                     and engaging panel discussions.
                   </p>
                 </div>
-              </Card.Body>
+              </CardBody>
             </Card>
           </TabsBody>
         </div>
