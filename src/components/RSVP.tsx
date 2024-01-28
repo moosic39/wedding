@@ -6,6 +6,7 @@ import {
   Checkbox,
   Input,
   Radio,
+  Textarea,
   Typography,
 } from '@material-tailwind/react'
 import serverAction from '@/backend/onSubmitAction'
@@ -62,6 +63,12 @@ const RSVP = () => {
           onSubmit={handleSubmit(onSubmit)}
           className='flex flex-col items-center'
         >
+          <div className='w-full'>
+            <Typography variant='small' placeholder={''}>
+              <span className=' text-red-500'>*</span> champs requis
+            </Typography>
+          </div>
+
           <div className='my-4 flex w-full gap-4'>
             <Input
               type='text'
@@ -74,7 +81,7 @@ const RSVP = () => {
             />
             <Input
               type='text'
-              color='indigo'
+              color='teal'
               className=''
               label='Nom'
               crossOrigin={undefined}
@@ -83,8 +90,8 @@ const RSVP = () => {
             />
           </div>
           <Input
-            type='text'
-            color='blue'
+            type='email'
+            color='teal'
             className=''
             label='Email'
             crossOrigin={undefined}
@@ -93,7 +100,7 @@ const RSVP = () => {
           />
           <div className='w-full flex end-4'>
             <Radio
-              color='blue'
+              color='teal'
               label='Je serai présent'
               value='present'
               id='present'
@@ -102,7 +109,7 @@ const RSVP = () => {
               {...register('presence', { required: true })}
             />
             <Radio
-              color='blue'
+              color='teal'
               label='Je serai absent'
               value='absent'
               id='absent'
@@ -113,7 +120,7 @@ const RSVP = () => {
           </div>
           <div className='w-full'>
             <Checkbox
-              color='blue'
+              color='teal'
               label='Je serai accompagné(e)'
               id='plusOne'
               defaultChecked={false}
@@ -135,7 +142,7 @@ const RSVP = () => {
               />
               <Input
                 type='text'
-                color='indigo'
+                color='teal'
                 className=''
                 label="Nom de l'invité(e)"
                 crossOrigin={undefined}
@@ -145,7 +152,7 @@ const RSVP = () => {
           )}
           <div className='mb-4 w-full'>
             <Checkbox
-              color='blue'
+              color='teal'
               label='Resctictions alimentaires'
               id='isDietaryRestriction'
               defaultChecked={false}
@@ -155,7 +162,7 @@ const RSVP = () => {
             {isDietaryRestriction && (
               <Input
                 type='text'
-                color='blue'
+                color='teal'
                 className=''
                 label='Restrictions alimentaires'
                 crossOrigin={undefined}
@@ -164,19 +171,17 @@ const RSVP = () => {
             )}
           </div>
 
-          <Input
-            type='text'
-            color='blue'
+          <Textarea
+            color='teal'
             className=''
             label='Message'
-            crossOrigin={undefined}
             {...register('message')}
           />
           <Button
-            color='blue'
+            color='teal'
             type='submit'
             placeholder=''
-            className='m-4'
+            className='m-4 w-1/4'
             onSubmit={(e) => {
               e.preventDefault()
             }}
@@ -195,9 +200,6 @@ const RSVP = () => {
             </div>
           )}
         </form>
-        <Typography variant='small' placeholder={''}>
-          <span className=' text-red-500'>*</span> champs requis
-        </Typography>
       </Container>
     </section>
   )

@@ -33,7 +33,7 @@ function Hero() {
           >
             21.09.2024
           </Typography>
-          <div className='flex items-center gap-4'>
+          {/* <div className='flex items-center gap-4'>
             <Button variant='gradient' color='white' placeholder={undefined}>
               Get started
             </Button>
@@ -43,7 +43,7 @@ function Hero() {
             >
               <PlayIcon className='h-4 w-4 text-gray-900' />
             </IconButton>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
