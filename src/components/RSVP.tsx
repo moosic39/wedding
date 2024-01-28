@@ -1,8 +1,9 @@
 'use client'
 import React from 'react'
-import Title from './atoms/Title'
+
 import { Button, Input } from '@material-tailwind/react'
 import serverAction from '@/backend/onSubmitAction'
+import Title from './ui-components/atom/Title'
 
 const RSVP = () => {
   const isValid = undefined
@@ -33,22 +34,46 @@ const RSVP = () => {
           className='mb-4 w-80'
           label='Email'
           name='email'
-          crossOrigin={isValid ? 'anonymous' : 'use-credentials'}
-        />
-        <Input
-          type='text'
-          color='light-blue'
-          className='mb-4 w-80'
-          label='Téléphone'
-          name='phone'
           crossOrigin={undefined}
         />
         <Input
           type='text'
           color='blue'
           className='mb-4 w-80'
-          label='Nombre de personnes'
-          name='people'
+          label='Présence'
+          name='presence'
+          crossOrigin={undefined}
+        />
+        <Input
+          type='text'
+          color='blue'
+          className='mb-4 w-80'
+          label='Invité'
+          name='plusOne'
+          crossOrigin={undefined}
+        />
+        <Input
+          type='text'
+          color='indigo'
+          className='mb-4 w-80'
+          label='Nom de la personne invitée'
+          name='plusOneLastName'
+          crossOrigin={undefined}
+        />
+        <Input
+          type='text'
+          color='teal'
+          className='mb-4 w-80'
+          label='Prénom de la personne invitée'
+          name='plusOneFirstName'
+          crossOrigin={undefined}
+        />
+        <Input
+          type='text'
+          color='blue'
+          className='mb-4 w-80'
+          label='Restrictions alimentaires'
+          name='dietaryRestrictions'
           crossOrigin={undefined}
         />
         <Input
@@ -57,7 +82,7 @@ const RSVP = () => {
           className='mb-4 w-80'
           label='Message'
           name='message'
-          crossOrigin={isValid ? 'anonymous' : 'use-credentials'}
+          crossOrigin={undefined}
         />
 
         <Button

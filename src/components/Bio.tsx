@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Title from './atoms/Title'
+import Title from './ui-components/atom/Title'
 
 const Bio = () => {
   return (

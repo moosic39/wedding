@@ -1,6 +1,6 @@
 'use client'
 import { Typography } from '@material-tailwind/react'
-import Title from './atoms/Title'
+import Title from './ui-components/atom/Title'
 
 const Countdown = () => {
   return (
