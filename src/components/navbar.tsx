@@ -15,22 +15,26 @@ import {
   Bars3Icon,
 } from '@heroicons/react/24/solid'
 import Image from 'next/image'
+import { set } from 'react-hook-form'
 
 interface NavItemProps {
   children: ReactNode
   href?: string
+  target?: string
+  setOpen?: (open: boolean) => void
 }
 
-function NavItem({ children, href }: NavItemProps) {
+function NavItem({ children, href, target, setOpen }: NavItemProps) {
   return (
     <li>
       <Typography
         as='a'
         href={href || '#'}
-        target={href ? '_blank' : '_self'}
+        target={target || '_blank'}
         variant='paragraph'
         className='flex items-center gap-2 font-medium'
         placeholder={''}
+        onClick={setOpen && (() => setOpen(false))}
       >
         {children}
       </Typography>
@@ -40,23 +44,25 @@ function NavItem({ children, href }: NavItemProps) {
 
 const NAV_MENU = [
   {
-    name: 'Page',
+    name: 'RSVP',
     icon: RectangleStackIcon,
+    href: '#rsvp',
+    target: '_self',
   },
-  {
-    name: 'Account',
-    icon: UserCircleIcon,
-  },
-  {
-    name: 'Docs',
-    icon: CommandLineIcon,
-    href: 'https://www.material-tailwind.com/docs/react/installation',
-  },
-  {
-    name: 'Components',
-    icon: Squares2X2Icon,
-    href: 'https://www.material-tailwind.com/components',
-  },
+  // {
+  //   name: 'Account',
+  //   icon: UserCircleIcon,
+  // },
+  // {
+  //   name: 'Docs',
+  //   icon: CommandLineIcon,
+  //   href: 'https://www.material-tailwind.com/docs/react/installation',
+  // },
+  // {
+  //   name: 'Components',
+  //   icon: Squares2X2Icon,
+  //   href: 'https://www.material-tailwind.com/components',
+  // },
 ]
 
 export function Navbar() {
@@ -113,18 +119,18 @@ export function Navbar() {
           </Typography>
         </div>
 
-        {/* <ul
-          className={`ml-10 items-center gap-6 lg:flex ${
+        <ul
+          className={`hidden ml-10 items-center gap-6 lg:flex ${
             isScrolling ? 'text-gray-900' : 'text-white'
           }`}
         >
-          {NAV_MENU.map(({ name, icon: Icon, href }) => (
-            <NavItem key={name} href={href}>
+          {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
+            <NavItem key={name} href={href} target={target}>
               <Icon className='h-5 w-5' />
               <span>{name}</span>
             </NavItem>
           ))}
-        </ul> */}
+        </ul>
         <div className='hidden items-center gap-4 lg:flex'>
           <Button
             color={isScrolling ? 'gray' : 'white'}
@@ -156,8 +162,8 @@ export function Navbar() {
       <Collapse open={open}>
         <div className='container mx-auto mt-4 rounded-lg bg-white px-6 py-5'>
           <ul className='flex flex-col gap-4 text-gray-900'>
-            {NAV_MENU.map(({ name, icon: Icon, href }) => (
-              <NavItem key={name} href={href}>
+            {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
+              <NavItem key={name} href={href} target={target} setOpen={setOpen}>
                 <Icon className='h-5 w-5' />
                 {name}
               </NavItem>

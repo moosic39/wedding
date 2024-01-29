@@ -11,7 +11,7 @@ function Hero() {
         <div className='container relative z-10 my-auto mx-auto grid place-items-center text-center'>
           <Typography
             variant='h2'
-            color='blue'
+            color='cyan'
             className='mb-2'
             placeholder={undefined}
           >
@@ -19,7 +19,7 @@ function Hero() {
           </Typography>
           <Typography
             variant='h1'
-            color='blue'
+            color='cyan'
             className='lg:max-w-3xl'
             placeholder={undefined}
           >

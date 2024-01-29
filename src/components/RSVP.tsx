@@ -68,20 +68,21 @@ const RSVP = () => {
               <span className=' text-red-500'>*</span> champs requis
             </Typography>
           </div>
-
-          <div className='my-4 flex w-full gap-4'>
+          <div className='my-4 md:flex w-full gap-4'>
+            <div className='mb-4 md:mb-0 md:w-full'>
+              <Input
+                type='text'
+                color='cyan'
+                className=''
+                label='Prénom'
+                crossOrigin={undefined}
+                {...register('firstName', { required: true })}
+                required
+              />
+            </div>
             <Input
               type='text'
-              color='teal'
-              className=''
-              label='Prénom'
-              crossOrigin={undefined}
-              {...register('firstName', { required: true })}
-              required
-            />
-            <Input
-              type='text'
-              color='teal'
+              color='cyan'
               className=''
               label='Nom'
               crossOrigin={undefined}
@@ -91,16 +92,16 @@ const RSVP = () => {
           </div>
           <Input
             type='email'
-            color='teal'
+            color='cyan'
             className=''
             label='Email'
             crossOrigin={undefined}
             {...register('email', { required: true })}
             required
           />
-          <div className='w-full flex end-4'>
+          <div className='w-full md:flex end-4'>
             <Radio
-              color='teal'
+              color='cyan'
               label='Je serai présent'
               value='present'
               id='present'
@@ -109,7 +110,7 @@ const RSVP = () => {
               {...register('presence', { required: true })}
             />
             <Radio
-              color='teal'
+              color='cyan'
               label='Je serai absent'
               value='absent'
               id='absent'
@@ -120,7 +121,7 @@ const RSVP = () => {
           </div>
           <div className='w-full'>
             <Checkbox
-              color='teal'
+              color='cyan'
               label='Je serai accompagné(e)'
               id='plusOne'
               defaultChecked={false}
@@ -131,18 +132,21 @@ const RSVP = () => {
           </div>
 
           {isPlusOne && (
-            <div className='my-4 flex w-full gap-4'>
+            <div className='my-4 md:flex w-full gap-4'>
+              <div className='mb-4 md:mb-0 md:w-full'>
+                <Input
+                  type='text'
+                  color='cyan'
+                  className=''
+                  label="Prénom de l'invité(e)"
+                  crossOrigin={undefined}
+                  {...register('plusOneFirstName')}
+                />
+              </div>
+
               <Input
                 type='text'
-                color='teal'
-                className=''
-                label="Prénom de l'invité(e)"
-                crossOrigin={undefined}
-                {...register('plusOneFirstName')}
-              />
-              <Input
-                type='text'
-                color='teal'
+                color='cyan'
                 className=''
                 label="Nom de l'invité(e)"
                 crossOrigin={undefined}
@@ -152,7 +156,7 @@ const RSVP = () => {
           )}
           <div className='mb-4 w-full'>
             <Checkbox
-              color='teal'
+              color='cyan'
               label='Resctictions alimentaires'
               id='isDietaryRestriction'
               defaultChecked={false}
@@ -162,7 +166,7 @@ const RSVP = () => {
             {isDietaryRestriction && (
               <Input
                 type='text'
-                color='teal'
+                color='cyan'
                 className=''
                 label='Restrictions alimentaires'
                 crossOrigin={undefined}
@@ -172,16 +176,16 @@ const RSVP = () => {
           </div>
 
           <Textarea
-            color='teal'
+            color='cyan'
             className=''
             label='Message'
             {...register('message')}
           />
           <Button
-            color='teal'
+            color='cyan'
             type='submit'
             placeholder=''
-            className='m-4 w-1/4'
+            className='lg:w-1/4 md:w-1/2 w-full'
             onSubmit={(e) => {
               e.preventDefault()
             }}

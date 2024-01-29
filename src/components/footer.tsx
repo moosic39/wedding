@@ -37,9 +37,9 @@ export function Footer() {
             className='text-gray-900'
             placeholder={''}
           >
-            Material Tailwind
+            Powered by Vercel
           </Typography>
-          <ul className='flex justify-center my-4 md:my-0 w-max mx-auto items-center gap-4'>
+          {/* <ul className='flex justify-center my-4 md:my-0 w-max mx-auto items-center gap-4'>
             {LINKS.map((link, index) => (
               <li key={index}>
                 <Typography
@@ -54,11 +54,18 @@ export function Footer() {
                 </Typography>
               </li>
             ))}
-          </ul>
+          </ul> */}
           <div className='flex w-fit justify-center gap-2'>
-            <IconButton size='sm' color='gray' variant='text' placeholder={''}>
-              <i className='fa-brands fa-twitter text-lg' />
-            </IconButton>
+            <a href='google.fr'>
+              <IconButton
+                variant='text'
+                size='sm'
+                color='gray'
+                placeholder={''}
+              >
+                <i className='fa-brands fa-twitter text-lg' />
+              </IconButton>
+            </a>
             <IconButton size='sm' color='gray' variant='text' placeholder={''}>
               <i className='fa-brands fa-youtube text-lg' />
             </IconButton>
@@ -81,7 +88,7 @@ export function Footer() {
           </a>{' '}
           by{' '}
           <a href='https://www.creative-tim.com' target='_blank'>
-            Creative Tim
+            Mickael JEGAT
           </a>
           .
         </Typography>
