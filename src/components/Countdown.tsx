@@ -1,35 +1,22 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { TimeLeft } from './CopyCountdown'
 import { Container, Title } from './ui-components/atom'
 import { Typography } from '@material-tailwind/react'
 
-function Countdown(): JSX.Element {
+const Countdown = (): JSX.Element => {
   const launch = new Date(1726930800000).getTime()
-  const currentTime = new Date().getTime()
-  const [countdown, setCountdown] = useState<number>()
+  const [countdown, setCountdown] = useState<number>(0)
 
   useEffect(() => {
     const id = setInterval(() => {
-      setCountdown(launch - currentTime)
+      setCountdown(launch - Date.now())
     }, 1000)
     return () => {
       clearInterval(id)
     }
-  }, [countdown, currentTime, launch])
+  }, [launch])
 
-  return (
-    <div className={''}>
-      <ShowCountdown
-        countdown={typeof countdown !== 'undefined' ? countdown : 0}
-      />
-    </div>
-  )
-}
-function ShowCountdown({
-  countdown,
-}: Readonly<{ countdown: number }>): JSX.Element {
-  const timeLeft: TimeLeft = (displayTime) => {
+  const timeLeft = (displayTime: number) => {
     const years = Math.floor(displayTime / (365 * 24 * 60 * 60 * 1000))
     const months = Math.floor(
       (displayTime % (365 * 24 * 60 * 60 * 1000)) /
