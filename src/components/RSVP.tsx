@@ -10,12 +10,11 @@ import {
   Typography,
 } from '@material-tailwind/react'
 import serverAction from '@/backend/onSubmitAction'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { Container, Title } from './ui-components/atom'
+import { Alert, Container, Title } from './ui-components/atom'
+import { ArrowPathIcon } from '@heroicons/react/24/solid'
 
 const RSVP = () => {
-  const router = useRouter()
   const [isValid, setIsValid] = useState<boolean>()
   const [message, setMessage] = useState<string>()
 
@@ -23,7 +22,7 @@ const RSVP = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isDirty, isValid: formIsValid },
+    formState: { errors, isDirty, isValid: formIsValid, isSubmitting },
   } = useForm()
 
   const onSubmit = async () => {
@@ -46,7 +45,6 @@ const RSVP = () => {
       setIsValid(true)
       setMessage(message)
     }
-    router.push('/#rsvp')
   }
 
   const isPlusOne = watch('plusOne')
@@ -186,25 +184,33 @@ const RSVP = () => {
               color='cyan'
               type='submit'
               placeholder=''
-              className='lg:w-1/3 md:w-1/2 w-full'
+              className='lg:w-1/3 md:w-1/2 w-full h-14 rounded-2xl'
               onSubmit={(e) => {
                 e.preventDefault()
               }}
+              disabled={isSubmitting}
             >
-              Soumettre
+              {isSubmitting ? (
+                <div className=' flex justify-center'>
+                  <ArrowPathIcon width={29} className='animate-spin' />
+                </div>
+              ) : (
+                <Typography
+                  className='text-lg font-bold'
+                  placeholder={undefined}
+                >
+                  Envoyer
+                </Typography>
+              )}
             </Button>
+            <Alert
+              message={message}
+              variant={isValid ? 'success' : 'error'}
+              open={!!message}
+              onClose={() => setMessage('')}
+              timeout={4000}
+            />
           </div>
-          {message && (
-            <div className='mt-4'>
-              <p
-                className={`text-center text-lg ${
-                  isValid ? 'text-green-500' : 'text-red-500'
-                }`}
-              >
-                {message}
-              </p>
-            </div>
-          )}
         </form>
       </Container>
     </section>
