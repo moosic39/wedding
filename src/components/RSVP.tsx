@@ -57,8 +57,8 @@ const RSVP = () => {
       className='container mx-auto flex flex-col items-center px-4 py-10'
       id='rsvp'
     >
-      <Title title='Vous êtes invités' />
       <Container className='w-full gap-4'>
+        <Title title='Vous êtes invités' />
         <form
           onSubmit={handleSubmit(onSubmit)}
           className='flex flex-col items-center'
@@ -186,7 +186,7 @@ const RSVP = () => {
               color='cyan'
               type='submit'
               placeholder=''
-              className='lg:w-1/4 md:w-1/2 w-full'
+              className='lg:w-1/3 md:w-1/2 w-full'
               onSubmit={(e) => {
                 e.preventDefault()
               }}
