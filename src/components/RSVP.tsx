@@ -1,11 +1,18 @@
 'use client'
 import React, { useState } from 'react'
 
-import { Button, Checkbox, Input, Radio } from '@material-tailwind/react'
+import {
+  Button,
+  Checkbox,
+  Input,
+  Radio,
+  Textarea,
+  Typography,
+} from '@material-tailwind/react'
 import serverAction from '@/backend/onSubmitAction'
-import Title from './ui-components/atom/Title'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { Container, Title } from './ui-components/atom'
 
 const RSVP = () => {
   const router = useRouter()
@@ -50,137 +57,154 @@ const RSVP = () => {
       className='container mx-auto flex flex-col items-center px-4 py-10'
       id='rsvp'
     >
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className='flex flex-col items-center'
-      >
-        <Title title='Vous êtes invité' />
-        <Input
-          type='text'
-          color='indigo'
-          className='mb-4 w-80'
-          label='Nom'
-          crossOrigin={undefined}
-          {...register('lastName', { required: true })}
-          required
-        />
-        <Input
-          type='text'
-          color='teal'
-          className='mb-4 w-80'
-          label='Prénom'
-          crossOrigin={undefined}
-          {...register('firstName', { required: true })}
-          required
-        />
-        <Input
-          type='text'
-          color='blue'
-          className='mb-4 w-80'
-          label='Email'
-          crossOrigin={undefined}
-          {...register('email', { required: true })}
-          required
-        />
-        <label>
-          <Radio
-            color='blue'
-            label='Je serai présent'
-            value='present'
-            id='present'
-            defaultChecked={false}
-            crossOrigin={undefined}
-            {...register('presence', { required: true })}
-          />
-          <Radio
-            color='blue'
-            label='Je serai absent'
-            value='absent'
-            id='absent'
-            defaultChecked={true}
-            crossOrigin={undefined}
-            {...register('presence', { required: true })}
-          />
-        </label>
-        <Checkbox
-          color='blue'
-          label='Je serai accompagné(e)'
-          id='plusOne'
-          defaultChecked={false}
-          crossOrigin={undefined}
-          {...register('plusOne')}
-        />
-        {isPlusOne && (
-          <>
-            <Input
-              type='text'
-              color='indigo'
-              className='mb-4 w-80'
-              label='Nom de la personne invitée'
-              crossOrigin={undefined}
-              {...register('plusOneLastName')}
-            />
-            <Input
-              type='text'
-              color='teal'
-              className='mb-4 w-80'
-              label='Prénom de la personne invitée'
-              crossOrigin={undefined}
-              {...register('plusOneFirstName')}
-            />
-          </>
-        )}
-        <Checkbox
-          color='blue'
-          label='Resctictions alimentaires'
-          id='isDietaryRestriction'
-          defaultChecked={false}
-          crossOrigin={undefined}
-          {...register('isDietaryRestriction')}
-        />
-
-        {isDietaryRestriction && (
-          <Input
-            type='text'
-            color='blue'
-            className='mb-4 w-80'
-            label='Restrictions alimentaires'
-            crossOrigin={undefined}
-            {...register('dietaryRestriction')}
-          />
-        )}
-
-        <Input
-          type='text'
-          color='blue'
-          className='mb-4 w-80'
-          label='Message'
-          crossOrigin={undefined}
-          {...register('message')}
-        />
-
-        <Button
-          color='blue'
-          type='submit'
-          placeholder=''
-          onSubmit={(e) => {
-            e.preventDefault()
-          }}
+      <Title title='Vous êtes invités' />
+      <Container className='w-full gap-4'>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className='flex flex-col items-center'
         >
-          Submit
-        </Button>
-        {message && (
-          <div className='mt-4'>
-            <p
-              className={`text-center text-lg ${
-                isValid ? 'text-green-500' : 'text-red-500'
-              }`}
-            >
-              {message}
-            </p>
+          <div className='w-full'>
+            <Typography variant='small' placeholder={''}>
+              <span className=' text-red-500'>*</span> champs requis
+            </Typography>
           </div>
-        )}
-      </form>
+          <div className='my-4 md:flex w-full gap-4'>
+            <div className='mb-4 md:mb-0 md:w-full'>
+              <Input
+                type='text'
+                color='cyan'
+                className=''
+                label='Prénom'
+                crossOrigin={undefined}
+                {...register('firstName', { required: true })}
+                required
+              />
+            </div>
+            <Input
+              type='text'
+              color='cyan'
+              className=''
+              label='Nom'
+              crossOrigin={undefined}
+              {...register('lastName', { required: true })}
+              required
+            />
+          </div>
+          <Input
+            type='email'
+            color='cyan'
+            className=''
+            label='Email'
+            crossOrigin={undefined}
+            {...register('email', { required: true })}
+            required
+          />
+          <div className='w-full md:flex end-4'>
+            <Radio
+              color='cyan'
+              label='Je serai présent'
+              value='present'
+              id='present'
+              defaultChecked={false}
+              crossOrigin={undefined}
+              {...register('presence', { required: true })}
+            />
+            <Radio
+              color='cyan'
+              label='Je serai absent'
+              value='absent'
+              id='absent'
+              defaultChecked={true}
+              crossOrigin={undefined}
+              {...register('presence', { required: true })}
+            />
+          </div>
+          <div className='w-full'>
+            <Checkbox
+              color='cyan'
+              label='Je serai accompagné(e)'
+              id='plusOne'
+              defaultChecked={false}
+              className=''
+              crossOrigin={undefined}
+              {...register('plusOne')}
+            />
+          </div>
+
+          {isPlusOne && (
+            <div className='my-4 md:flex w-full gap-4'>
+              <div className='mb-4 md:mb-0 md:w-full'>
+                <Input
+                  type='text'
+                  color='cyan'
+                  className=''
+                  label="Prénom de l'invité(e)"
+                  crossOrigin={undefined}
+                  {...register('plusOneFirstName')}
+                />
+              </div>
+
+              <Input
+                type='text'
+                color='cyan'
+                className=''
+                label="Nom de l'invité(e)"
+                crossOrigin={undefined}
+                {...register('plusOneLastName')}
+              />
+            </div>
+          )}
+          <div className='mb-4 w-full'>
+            <Checkbox
+              color='cyan'
+              label='Resctictions alimentaires'
+              id='isDietaryRestriction'
+              defaultChecked={false}
+              crossOrigin={undefined}
+              {...register('isDietaryRestriction')}
+            />
+            {isDietaryRestriction && (
+              <Input
+                type='text'
+                color='cyan'
+                className=''
+                label='Restrictions alimentaires'
+                crossOrigin={undefined}
+                {...register('dietaryRestriction')}
+              />
+            )}
+          </div>
+
+          <Textarea
+            color='cyan'
+            className=''
+            label='Message'
+            {...register('message')}
+          />
+          <Button
+            color='cyan'
+            type='submit'
+            placeholder=''
+            className='lg:w-1/4 md:w-1/2 w-full'
+            onSubmit={(e) => {
+              e.preventDefault()
+            }}
+          >
+            Submit
+          </Button>
+          {message && (
+            <div className='mt-4'>
+              <p
+                className={`text-center text-lg ${
+                  isValid ? 'text-green-500' : 'text-red-500'
+                }`}
+              >
+                {message}
+              </p>
+            </div>
+          )}
+        </form>
+      </Container>
     </section>
   )
 }

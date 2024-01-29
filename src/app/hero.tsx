@@ -11,7 +11,7 @@ function Hero() {
         <div className='container relative z-10 my-auto mx-auto grid place-items-center text-center'>
           <Typography
             variant='h2'
-            color='blue'
+            color='cyan'
             className='mb-2'
             placeholder={undefined}
           >
@@ -19,7 +19,7 @@ function Hero() {
           </Typography>
           <Typography
             variant='h1'
-            color='blue'
+            color='cyan'
             className='lg:max-w-3xl'
             placeholder={undefined}
           >
@@ -33,7 +33,7 @@ function Hero() {
           >
             21.09.2024
           </Typography>
-          <div className='flex items-center gap-4'>
+          {/* <div className='flex items-center gap-4'>
             <Button variant='gradient' color='white' placeholder={undefined}>
               Get started
             </Button>
@@ -43,7 +43,7 @@ function Hero() {
             >
               <PlayIcon className='h-4 w-4 text-gray-900' />
             </IconButton>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
