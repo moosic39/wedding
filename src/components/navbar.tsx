@@ -120,7 +120,7 @@ export function Navbar() {
         </div>
 
         <ul
-          className={`hidden ml-10 items-center gap-6 lg:flex ${
+          className={`hidden w-1/2 ml-10 items-center gap-6 lg:flex justify-end ${
             isScrolling ? 'text-gray-900' : 'text-white'
           }`}
         >
