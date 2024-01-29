@@ -99,7 +99,7 @@ const RSVP = () => {
             {...register('email', { required: true })}
             required
           />
-          <div className='w-full md:flex end-4'>
+          <div className='w-full flex justify-between lg:justify-normal'>
             <Radio
               color='cyan'
               label='Je serai présent'
@@ -177,21 +177,23 @@ const RSVP = () => {
 
           <Textarea
             color='cyan'
-            className=''
+            className='mb-4'
             label='Message'
             {...register('message')}
           />
-          <Button
-            color='cyan'
-            type='submit'
-            placeholder=''
-            className='lg:w-1/4 md:w-1/2 w-full'
-            onSubmit={(e) => {
-              e.preventDefault()
-            }}
-          >
-            Submit
-          </Button>
+          <div className='w-full flex justify-end'>
+            <Button
+              color='cyan'
+              type='submit'
+              placeholder=''
+              className='lg:w-1/4 md:w-1/2 w-full'
+              onSubmit={(e) => {
+                e.preventDefault()
+              }}
+            >
+              Soumettre
+            </Button>
+          </div>
           {message && (
             <div className='mt-4'>
               <p
