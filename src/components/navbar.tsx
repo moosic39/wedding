@@ -44,6 +44,12 @@ function NavItem({ children, href, target, setOpen }: NavItemProps) {
 
 const NAV_MENU = [
   {
+    name: 'Countdown',
+    icon: RectangleStackIcon,
+    href: '#countdown',
+    target: '_self',
+  },
+  {
     name: 'RSVP',
     icon: RectangleStackIcon,
     href: '#rsvp',
@@ -109,6 +115,7 @@ export function Navbar() {
             className='h-8 w-8 object-cover'
             width={32}
             height={32}
+            priority
           />
           <Typography
             color={isScrolling ? 'blue-gray' : 'white'}
