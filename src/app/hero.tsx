@@ -19,16 +19,14 @@ function Hero() {
           </Typography>
           <Typography
             variant='h1'
-            color='cyan'
-            className='lg:max-w-3xl'
+            className='lg:max-w-3xl font-clicker text-6xl md:text-7xl lg:text-8xl mb-2 text-cyan-400'
             placeholder={undefined}
           >
             Jennifer &amp; Mickaël
           </Typography>
           <Typography
-            variant='h2'
-            color='cyan'
-            className='mt-1 mb-12 w-full md:max-w-full lg:max-w-2xl'
+            variant='h3'
+            className='mt-1 mb-12 w-full md:max-w-full lg:max-w-2xl text-white'
             placeholder={undefined}
           >
             21.09.2024

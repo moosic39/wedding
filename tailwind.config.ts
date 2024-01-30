@@ -6,7 +6,14 @@ const config: Config = withMT({
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {},
+  theme: {
+    extend: {
+      fontFamily: {
+        clicker: ['var(--font-clicker)'],
+        mono: ['var(--font-roboto-mono)'],
+      },
+    },
+  },
   plugins: [],
 })
 
