@@ -38,7 +38,7 @@ export default function RootLayout({
       <body>
         <Layout>
           {children}
-          <FixedPlugin />
+          {/* <FixedPlugin /> */}
         </Layout>
         <link
           rel='stylesheet'
