@@ -1,3 +1,4 @@
+'use client'
 import { Alert } from '@material-tailwind/react'
 import { FC, useEffect } from 'react'
 import {

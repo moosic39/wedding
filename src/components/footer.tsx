@@ -31,7 +31,7 @@ export function Footer() {
         <div className='flex flex-col md:flex-row items-center !justify-between'>
           <Typography
             as='a'
-            href='https://www.material-tailwind.com'
+            href='https://vercel.com/'
             target='_blank'
             variant='h6'
             className='text-gray-900'
@@ -56,7 +56,7 @@ export function Footer() {
             ))}
           </ul> */}
           <div className='flex w-fit justify-center gap-2'>
-            <a href='google.fr'>
+            <a href='https://twitter.com/@moosic39  '>
               <IconButton
                 variant='text'
                 size='sm'
@@ -69,28 +69,45 @@ export function Footer() {
             <IconButton size='sm' color='gray' variant='text' placeholder={''}>
               <i className='fa-brands fa-youtube text-lg' />
             </IconButton>
-            <IconButton size='sm' color='gray' variant='text' placeholder={''}>
-              <i className='fa-brands fa-instagram text-lg' />
-            </IconButton>
-            <IconButton size='sm' color='gray' variant='text' placeholder={''}>
-              <i className='fa-brands fa-github text-lg' />
-            </IconButton>
+            <a href='https://www.instagram.com/m_jegat'>
+              <IconButton
+                size='sm'
+                color='gray'
+                variant='text'
+                placeholder={''}
+              >
+                <i className='fa-brands fa-instagram text-lg' />
+              </IconButton>
+            </a>
+            <a href='https://github.com/moosic39/wedding'>
+              <IconButton
+                size='sm'
+                color='gray'
+                variant='text'
+                placeholder={''}
+              >
+                <i className='fa-brands fa-github text-lg' />
+              </IconButton>
+            </a>
           </div>
         </div>
         <Typography
           color='blue-gray'
-          className='text-center mt-12 font-normal !text-gray-700'
+          className='text-center mt-12 font-normal !text-gray-700 text-xs md:text-sm lg:text-base'
           placeholder={''}
         >
-          &copy; {CURRENT_YEAR} Made with{' '}
+          &copy; {CURRENT_YEAR} All Rights Reserved Mickael JEGAT
+          <br />
+          Made with{' '}
           <a href='https://www.material-tailwind.com' target='_blank'>
             Material Tailwind
           </a>{' '}
-          by{' '}
-          <a href='https://www.creative-tim.com' target='_blank'>
-            Mickael JEGAT
+          by Mickael JEGAT.
+          <br />
+          Images by{' '}
+          <a href='http://unsplash.com/' target='_blank'>
+            Unsplash
           </a>
-          .
         </Typography>
       </div>
     </footer>
