@@ -16,6 +16,7 @@ import {
 } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { set } from 'react-hook-form'
+import { Alert } from './ui-components/atom'
 
 interface NavItemProps {
   children: ReactNode
@@ -74,6 +75,7 @@ const NAV_MENU = [
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [clicked, setClicked] = useState(false)
 
   const handleOpen = () => setOpen((cur) => !cur)
 
@@ -143,6 +145,7 @@ export function Navbar() {
             color={isScrolling ? 'gray' : 'white'}
             variant='outlined'
             placeholder={''}
+            onClick={() => setClicked(true)}
           >
             Log in
           </Button>
@@ -177,7 +180,11 @@ export function Navbar() {
             ))}
           </ul>
           <div className='mt-6 flex items-center gap-4'>
-            <Button variant='outlined' placeholder={''}>
+            <Button
+              variant='outlined'
+              placeholder={''}
+              onClick={() => setClicked(true)}
+            >
               Log in
             </Button>
             {/* <a href='https://www.materila-tailwind.com/blocks' target='_blank'>
@@ -188,6 +195,13 @@ export function Navbar() {
           </div>
         </div>
       </Collapse>
+      <Alert
+        message={'En cours de création 😇'}
+        variant={'info'}
+        open={clicked}
+        onClose={() => setClicked(false)}
+        timeout={4000}
+      />
     </MTNavbar>
   )
 }
