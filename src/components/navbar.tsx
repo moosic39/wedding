@@ -111,18 +111,21 @@ export function Navbar() {
     >
       <div className='container mx-auto flex items-center justify-between'>
         <div className='flex gap-2'>
-          <Image
-            src='/logos/wedding_logo_v1_rounded.png'
-            alt='logo'
-            className='h-8 w-8 object-cover'
-            width={32}
-            height={32}
-            priority
-          />
+          <a href='/'>
+            <Image
+              src='/logos/wedding_logo_v1_rounded.png'
+              alt='logo'
+              className='h-8 w-8 object-cover'
+              width={32}
+              height={32}
+              priority
+            />
+          </a>
           <Typography
             color={isScrolling ? 'blue-gray' : 'white'}
             className='text-lg font-bold text-center'
             placeholder={''}
+            as='span'
           >
             Jennifer &amp; Mickaël
           </Typography>
