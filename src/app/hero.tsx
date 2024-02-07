@@ -12,7 +12,7 @@ function Hero() {
           <Typography
             variant='h2'
             color='cyan'
-            className='mb-2'
+            className='mb-2 text-white text-2xl md:text-3xl lg:text-4xl'
             placeholder={undefined}
           >
             Le Mariage de
@@ -26,7 +26,7 @@ function Hero() {
           </Typography>
           <Typography
             variant='h3'
-            className='mt-1 mb-12 w-full md:max-w-full lg:max-w-2xl text-white'
+            className='mt-1 mb-12 w-full md:max-w-full text-xl md:text-2xl lg:text-3xl text-white'
             placeholder={undefined}
           >
             21.09.2024

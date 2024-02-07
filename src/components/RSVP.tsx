@@ -151,7 +151,7 @@ const RSVP = () => {
         <div className='mb-4 w-full'>
           <Checkbox
             color='cyan'
-            label='Resctictions alimentaires'
+            label='Restrictions alimentaires'
             id='isDietaryRestriction'
             defaultChecked={false}
             crossOrigin={undefined}
