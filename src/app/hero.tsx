@@ -12,23 +12,21 @@ function Hero() {
           <Typography
             variant='h2'
             color='cyan'
-            className='mb-2'
+            className='mb-2 text-white text-2xl md:text-3xl lg:text-4xl'
             placeholder={undefined}
           >
             Le Mariage de
           </Typography>
           <Typography
             variant='h1'
-            color='cyan'
-            className='lg:max-w-3xl'
+            className='lg:max-w-3xl font-clicker text-6xl md:text-7xl lg:text-8xl mb-2 text-cyan-400'
             placeholder={undefined}
           >
             Jennifer &amp; Mickaël
           </Typography>
           <Typography
-            variant='h2'
-            color='cyan'
-            className='mt-1 mb-12 w-full md:max-w-full lg:max-w-2xl'
+            variant='h3'
+            className='mt-1 mb-12 w-full md:max-w-full text-xl md:text-2xl lg:text-3xl text-white'
             placeholder={undefined}
           >
             21.09.2024
