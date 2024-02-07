@@ -20,9 +20,9 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: 'NextJS Tailwind Event Landing Page',
+  title: 'Mariage Jennifer & Mickaël DaSilva Jégat',
   description:
-    'Introducing Tailwind Event Landing Page, a dynamic and visually appealing landing page template designed using Tailwind CSS and Material Tailwind.',
+    "Jennifer DaSilva et Mickaël Jégat se marient le 21 septembre 2024 à l’église de Notre-Dame de l'Assomption à Verriere.",
 }
 
 export default function RootLayout({
