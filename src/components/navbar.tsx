@@ -45,15 +45,21 @@ function NavItem({ children, href, target, setOpen }: NavItemProps) {
 
 const NAV_MENU = [
   {
-    name: 'Countdown',
+    name: 'Les Mariées',
     icon: RectangleStackIcon,
-    href: '#countdown',
+    href: '#bio',
     target: '_self',
   },
   {
     name: 'RSVP',
     icon: RectangleStackIcon,
     href: '#rsvp',
+    target: '_self',
+  },
+  {
+    name: 'Le jour J',
+    icon: RectangleStackIcon,
+    href: '#countdown',
     target: '_self',
   },
   // {

@@ -22,6 +22,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       {/* <SponsoredBy /> */}
+      <Bio />
       <RSVP />
       <Countdown />
       {/* <AboutEvent /> */}
