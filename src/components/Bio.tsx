@@ -49,7 +49,7 @@ const Bio = () => {
     <Container
       id='bio'
       title='Les Mariées'
-      className='container mx-auto flex flex-col items-center px-4 py-10'
+      className='container mx-auto flex flex-col items-center gap-4 px-4 py-10'
     >
       <div className='md:flex flex-row w-full justify-between gap-8'>
         <Card {...jennProps} />

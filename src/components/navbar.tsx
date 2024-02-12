@@ -7,12 +7,12 @@ import {
   Typography,
 } from '@material-tailwind/react'
 import {
-  RectangleStackIcon,
-  UserCircleIcon,
-  CommandLineIcon,
-  Squares2X2Icon,
+  UserGroupIcon,
   XMarkIcon,
   Bars3Icon,
+  CalendarDaysIcon,
+  InboxArrowDownIcon,
+  MapPinIcon,
 } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { set } from 'react-hook-form'
@@ -46,36 +46,28 @@ function NavItem({ children, href, target, setOpen }: NavItemProps) {
 const NAV_MENU = [
   {
     name: 'Les Mariées',
-    icon: RectangleStackIcon,
+    icon: UserGroupIcon,
     href: '#bio',
+    target: '_self',
+  },
+  // {
+  //   name: 'Localisation',
+  //   icon: MapPinIcon,
+  //   href: '#localisation',
+  //   target: '_self',
+  // },
+  {
+    name: 'Le jour J',
+    icon: CalendarDaysIcon,
+    href: '#countdown',
     target: '_self',
   },
   {
     name: 'RSVP',
-    icon: RectangleStackIcon,
+    icon: InboxArrowDownIcon,
     href: '#rsvp',
     target: '_self',
   },
-  {
-    name: 'Le jour J',
-    icon: RectangleStackIcon,
-    href: '#countdown',
-    target: '_self',
-  },
-  // {
-  //   name: 'Account',
-  //   icon: UserCircleIcon,
-  // },
-  // {
-  //   name: 'Docs',
-  //   icon: CommandLineIcon,
-  //   href: 'https://www.material-tailwind.com/docs/react/installation',
-  // },
-  // {
-  //   name: 'Components',
-  //   icon: Squares2X2Icon,
-  //   href: 'https://www.material-tailwind.com/components',
-  // },
 ]
 
 export function Navbar() {
@@ -150,19 +142,15 @@ export function Navbar() {
           ))}
         </ul>
         <div className='hidden items-center gap-4 lg:flex'>
+          {/* <a href='/signin'> */}
           <Button
-            color={isScrolling ? 'gray' : 'white'}
-            variant='outlined'
+            color={isScrolling ? 'cyan' : 'white'}
             placeholder={''}
             onClick={() => setClicked(true)}
           >
             Log in
           </Button>
-          {/* <a href='https://www.material-tailwind.com/blocks' target='_blank'>
-            <Button color={isScrolling ? 'gray' : 'white'} placeholder={''}>
-              blocks
-            </Button>
-          </a> */}
+          {/* </a> */}
         </div>
         <IconButton
           variant='text'
@@ -189,6 +177,7 @@ export function Navbar() {
             ))}
           </ul>
           <div className='mt-6 flex items-center gap-4'>
+            {/* <a href='/signin'> */}
             <Button
               variant='outlined'
               placeholder={''}
@@ -196,11 +185,7 @@ export function Navbar() {
             >
               Log in
             </Button>
-            {/* <a href='https://www.materila-tailwind.com/blocks' target='_blank'>
-              <Button color='gray' placeholder={''}>
-                blocks
-              </Button>
-            </a> */}
+            {/* </a> */}
           </div>
         </div>
       </Collapse>
