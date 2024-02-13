@@ -14,7 +14,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Bio />
-      {/* <Location /> */}
+      <Location />
       <Countdown />
       <RSVP />
       <Footer />
