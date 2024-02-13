@@ -62,7 +62,11 @@ const RSVP = () => {
   const isDietaryRestriction = watch('isDietaryRestriction')
 
   return (
-    <Container id='rsvp' title='Vous êtes invités' className='w-full gap-4'>
+    <Container
+      id='rsvp'
+      title='Vous êtes invités'
+      className='w-full lg:w-2/3 gap-4'
+    >
       <form
         onSubmit={handleSubmit(onSubmit)}
         className='flex flex-col items-center'
