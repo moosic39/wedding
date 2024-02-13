@@ -6,6 +6,7 @@ import Hero from './hero'
 import Countdown from '@/components/Countdown'
 import Bio from '@/components/Bio'
 import RSVP from '@/components/RSVP'
+import Location from '@/components/Location'
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Bio />
+      {/* <Location /> */}
       <Countdown />
       <RSVP />
       <Footer />
