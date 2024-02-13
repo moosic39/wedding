@@ -49,12 +49,12 @@ const NAV_MENU = [
     href: '#bio',
     target: '_self',
   },
-  // {
-  //   name: 'Localisation',
-  //   icon: MapPinIcon,
-  //   href: '#localisation',
-  //   target: '_self',
-  // },
+  {
+    name: 'Localisation',
+    icon: MapPinIcon,
+    href: '#location',
+    target: '_self',
+  },
   {
     name: 'Le jour J',
     icon: CalendarDaysIcon,
