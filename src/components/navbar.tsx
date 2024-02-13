@@ -15,7 +15,6 @@ import {
   MapPinIcon,
 } from '@heroicons/react/24/solid'
 import Image from 'next/image'
-import { set } from 'react-hook-form'
 import { Alert } from './ui-components/atom'
 
 interface NavItemProps {
@@ -147,6 +146,7 @@ export function Navbar() {
             color={isScrolling ? 'cyan' : 'white'}
             placeholder={''}
             onClick={() => setClicked(true)}
+            className=' shadow-lg'
           >
             Log in
           </Button>
