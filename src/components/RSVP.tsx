@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   Button,
@@ -11,18 +11,20 @@ import {
 } from '@material-tailwind/react'
 import serverAction from '@/backend/onSubmitAction'
 import { useForm } from 'react-hook-form'
-import { Alert, Container, Title } from './ui-components/atom'
+import { Alert, Container } from './ui-components/atom'
 import { ArrowPathIcon } from '@heroicons/react/24/solid'
 
 const RSVP = () => {
   const [isValid, setIsValid] = useState<boolean>()
   const [message, setMessage] = useState<string>()
+  const [hidden, setHidden] = useState<boolean>(false)
 
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isDirty, isValid: formIsValid, isSubmitting },
+    formState: { isSubmitting },
+    getFieldState,
   } = useForm()
 
   const onSubmit = async () => {
@@ -46,6 +48,15 @@ const RSVP = () => {
       setMessage(message)
     }
   }
+
+  useEffect(() => {
+    if (getFieldState('presence').error) {
+      setHidden(false)
+      setTimeout(() => {
+        setHidden(true)
+      }, 4000)
+    }
+  }, [getFieldState('presence').error])
 
   const isPlusOne = watch('plusOne')
   const isDietaryRestriction = watch('isDietaryRestriction')
@@ -92,7 +103,13 @@ const RSVP = () => {
           {...register('email', { required: true })}
           required
         />
-        <div className='w-full flex justify-between lg:justify-normal'>
+        <Typography
+          placeholder={''}
+          className={'p-2 pb-0 font-semibold flex w-full text-blue-gray-500'}
+        >
+          Présence&nbsp;<span className={'text-red-500'}>*</span>
+        </Typography>
+        <div className='w-full flex justify-between gap-0 md:justify-start md:gap-x-60 lg:justify-normal lg:gap-0'>
           <Radio
             color='cyan'
             label='Je serai présent'
@@ -107,10 +124,20 @@ const RSVP = () => {
             label='Je serai absent'
             value='absent'
             id='absent'
-            defaultChecked={true}
+            defaultChecked={false}
             crossOrigin={undefined}
             {...register('presence', { required: true })}
           />
+          {getFieldState('presence').error && (
+            <Typography
+              placeholder={''}
+              className={`text-sm absolute my-8 mx-4 font-bold text-red-500 ${
+                hidden ? 'hidden' : ''
+              }`}
+            >
+              Ce champ est requis
+            </Typography>
+          )}
         </div>
         <div className='w-full'>
           <Checkbox
