@@ -22,13 +22,6 @@ const Location = () => {
                 <Typography
                   variant='h3'
                   placeholder={''}
-                  className='w-full lg:h-1/2 italic text-white'
-                >
-                  21 Septembre 2024
-                </Typography>
-                <Typography
-                  variant='h3'
-                  placeholder={''}
                   className='w-full lg:h-1/2 text-bold text-white'
                 >
                   15h00
@@ -80,13 +73,6 @@ const Location = () => {
                     className='w-full lg:h-1/2 font-clicker'
                   >
                     Récéption
-                  </Typography>
-                  <Typography
-                    variant='h3'
-                    placeholder={''}
-                    className='w-full lg:h-1/2 italic text-white'
-                  >
-                    21 Septembre 2024
                   </Typography>
                   <Typography
                     variant='h3'
