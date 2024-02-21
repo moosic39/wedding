@@ -181,7 +181,7 @@ const RSVP = () => {
         <div className='mb-4 w-full'>
           <Checkbox
             color='cyan'
-            label='Allergies alimentaires ?'
+            label='Allergies/Restrictions alimentaires ?'
             id='isDietaryRestriction'
             defaultChecked={false}
             crossOrigin={undefined}
@@ -192,7 +192,7 @@ const RSVP = () => {
               type='text'
               color='cyan'
               className=''
-              label='Allergies alimentaires'
+              label='Allergies/Restrictions alimentaires'
               crossOrigin={undefined}
               {...register('dietaryRestriction')}
             />
