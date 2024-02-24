@@ -62,7 +62,11 @@ const RSVP = () => {
   const isDietaryRestriction = watch('isDietaryRestriction')
 
   return (
-    <Container id='rsvp' title='Vous êtes invités' className='w-full gap-4'>
+    <Container
+      id='rsvp'
+      title='Vous êtes invités'
+      className='w-full lg:w-2/3 gap-4'
+    >
       <form
         onSubmit={handleSubmit(onSubmit)}
         className='flex flex-col items-center'
@@ -177,7 +181,7 @@ const RSVP = () => {
         <div className='mb-4 w-full'>
           <Checkbox
             color='cyan'
-            label='Allergies alimentaires ?'
+            label='Allergies/Restrictions alimentaires ?'
             id='isDietaryRestriction'
             defaultChecked={false}
             crossOrigin={undefined}
@@ -188,7 +192,7 @@ const RSVP = () => {
               type='text'
               color='cyan'
               className=''
-              label='Allergies alimentaires'
+              label='Allergies/Restrictions alimentaires'
               crossOrigin={undefined}
               {...register('dietaryRestriction')}
             />
@@ -203,10 +207,9 @@ const RSVP = () => {
         />
         <div className='w-full flex justify-end'>
           <Button
-            color='cyan'
             type='submit'
             placeholder=''
-            className='lg:w-1/3 md:w-1/2 w-full h-14 rounded-2xl'
+            className='lg:w-1/3 md:w-1/2 w-full h-14 bg-cyan-700 rounded-2xl'
             onSubmit={(e) => {
               e.preventDefault()
             }}

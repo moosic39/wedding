@@ -44,7 +44,7 @@ const Countdown = (): JSX.Element => {
   return (
     <Container id='countdown' title='Le jour du Mariage'>
       <Typography
-        className=' font-bold font-clicker text-cyan-600 dark:text-cyan-400 text-3xl md:text-5xl lg:text-7xl'
+        className=' font-bold font-clicker text-cyan-700 text-3xl md:text-5xl lg:text-7xl'
         placeholder={undefined}
       >
         <div className={'flex justify-center'}>
