@@ -10,7 +10,11 @@ const Location = () => {
   const [isChurchHidden, setIsChurchHidden] = useState(false)
   const [isBanquetHidden, setIsBanquetHidden] = useState(false)
   return (
-    <Container id={'location'} title={'Localisation'}>
+    <Container
+      id={'location'}
+      title={'Localisation'}
+      className='w-full lg:w-4/5'
+    >
       <div className='flex flex-col items-center justify-center gap-4'>
         <div className='flex w-full lg:h-1/2'>
           <div className='my-4 flex w-full gap-4 flex-col md:flex-row bg-cyan-700 bg-opacity-50 rounded-3xl shadow-2xl'>

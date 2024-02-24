@@ -207,10 +207,9 @@ const RSVP = () => {
         />
         <div className='w-full flex justify-end'>
           <Button
-            color='cyan'
             type='submit'
             placeholder=''
-            className='lg:w-1/3 md:w-1/2 w-full h-14 rounded-2xl'
+            className='lg:w-1/3 md:w-1/2 w-full h-14 bg-cyan-700 rounded-2xl'
             onSubmit={(e) => {
               e.preventDefault()
             }}

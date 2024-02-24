@@ -46,11 +46,7 @@ const Bio = () => {
     desc: 'Meilleur ami du marié',
   }
   return (
-    <Container
-      id='bio'
-      title='Les Mariées'
-      className='container mx-auto flex flex-col items-center gap-4 px-4 py-10'
-    >
+    <Container id='bio' title='Les Mariées' className='gap-4'>
       <div className='md:flex flex-row w-full justify-between gap-8 mb-12'>
         <Card {...jennProps} />
         <Card {...mickaProps} />
