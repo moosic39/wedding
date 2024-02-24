@@ -90,9 +90,7 @@ const Location = () => {
                 ></iframe>
               ) : (
                 <Image
-                  src={
-                    "/image/Eglise Notre-Dame-de-l'Assomption Verrieres-le-Buisson.jpeg"
-                  }
+                  src={'/image/Eglise.webp'}
                   width={600}
                   height={400}
                   alt="Eglise Notre-Dame-de-l'Assomption"
@@ -116,7 +114,7 @@ const Location = () => {
                   ></iframe>
                 ) : (
                   <Image
-                    src={'/image/Les Granges.jpg'}
+                    src={'/image/Les_Granges.webp'}
                     width={600}
                     height={400}
                     alt="Eglise Notre-Dame-de-l'Assomption"
