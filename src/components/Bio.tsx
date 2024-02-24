@@ -27,7 +27,7 @@ const Bio = () => {
   }
   const auroreProps = {
     src: '/image/Aurore.webp',
-    title: 'Aurore Gaumel',
+    title: 'Aurore Gomel',
     desc: 'Amie de la mariée',
   }
   const benoitProps = {
@@ -46,7 +46,7 @@ const Bio = () => {
     desc: 'Meilleur ami du marié',
   }
   return (
-    <Container id='bio' title='Les Mariées' className='gap-4'>
+    <Container id='bio' title='Les Mariés' className='gap-4'>
       <div className='md:flex flex-row w-full justify-between gap-8 mb-12'>
         <Card {...jennProps} />
         <Card {...mickaProps} />

@@ -44,7 +44,7 @@ function NavItem({ children, href, target, setOpen }: NavItemProps) {
 
 const NAV_MENU = [
   {
-    name: 'Les Mariées',
+    name: 'Les Mariés',
     icon: UserGroupIcon,
     href: '#bio',
     target: '_self',
