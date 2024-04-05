@@ -15,11 +15,25 @@ export const SimpleRegistrationForm = () => {
         shadow={true}
         placeholder={''}
         className={'p-12'}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
       >
-        <Typography variant='h4' color='cyan' placeholder={''}>
+        <Typography
+          variant='h4'
+          color='cyan'
+          placeholder={''}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           Sign Up
         </Typography>
-        <Typography color='gray' className='mt-1 font-normal' placeholder={''}>
+        <Typography
+          color='gray'
+          className='mt-1 font-normal'
+          placeholder={''}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           Nice to meet you! Enter your details to register.
         </Typography>
         <form className='mt-8 mb-2 w-80 max-w-screen-lg sm:w-96'>
@@ -29,6 +43,8 @@ export const SimpleRegistrationForm = () => {
               color='blue-gray'
               className='-mb-3'
               placeholder={''}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             >
               Your Name
             </Typography>
@@ -42,12 +58,16 @@ export const SimpleRegistrationForm = () => {
                 className: 'before:content-none after:content-none',
               }}
               crossOrigin={''}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             />
             <Typography
               variant='h6'
               color='blue-gray'
               className='-mb-3'
               placeholder={''}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             >
               Your Email
             </Typography>
@@ -60,12 +80,16 @@ export const SimpleRegistrationForm = () => {
                 className: 'before:content-none after:content-none',
               }}
               crossOrigin={''}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             />
             <Typography
               variant='h6'
               color='blue-gray'
               className='-mb-3'
               placeholder={''}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             >
               Password
             </Typography>
@@ -79,6 +103,8 @@ export const SimpleRegistrationForm = () => {
                 className: 'before:content-none after:content-none',
               }}
               crossOrigin={''}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             />
           </div>
           <Checkbox
@@ -88,29 +114,42 @@ export const SimpleRegistrationForm = () => {
                 color='gray'
                 className='flex items-center font-normal'
                 placeholder={''}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
-                I agree the
+                I agree the&nbsp;
                 <a
                   href='#'
                   className='font-medium transition-colors hover:text-cyan'
                 >
-                  &nbsp;Terms and Conditions
+                  Terms and Conditions
                 </a>
               </Typography>
             }
             color='cyan'
             containerProps={{ className: '-ml-2.5' }}
             crossOrigin={''}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           />
-          <Button className='mt-6' fullWidth color='cyan' placeholder={''}>
+          <Button
+            className='mt-6'
+            fullWidth
+            color='cyan'
+            placeholder={''}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             sign up
           </Button>
           <Typography
             color='cyan'
             className='mt-4 text-center font-normal'
             placeholder={''}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
-            Already have an account?{' '}
+            Already have an account?&nbsp;
             <a href='#' className='font-medium text-cyan-500 underline'>
               Log In
             </a>

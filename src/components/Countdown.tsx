@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { Container, Title } from './ui-components/atom'
+import { Container } from './ui-components/atom'
 import { Typography } from '@material-tailwind/react'
 
 const Countdown = (): JSX.Element => {
@@ -46,6 +46,8 @@ const Countdown = (): JSX.Element => {
       <Typography
         className=' font-bold font-clicker text-cyan-700 text-3xl md:text-5xl lg:text-7xl'
         placeholder={undefined}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
       >
         <div className={'flex justify-center'}>
           <div className={'flex flex-row'}>

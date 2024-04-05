@@ -29,12 +29,14 @@ function NavItem({ children, href, target, setOpen }: NavItemProps) {
     <li>
       <Typography
         as='a'
-        href={href || '#'}
-        target={target || '_blank'}
+        href={href ?? '#'}
+        target={target ?? '_blank'}
         variant='paragraph'
         className='flex items-center gap-2 font-medium'
         placeholder={''}
         onClick={setOpen && (() => setOpen(false))}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
       >
         {children}
       </Typography>
@@ -105,6 +107,8 @@ export function Navbar() {
       color={isScrolling ? 'white' : 'transparent'}
       className='fixed top-0 z-50 border-0'
       placeholder={''}
+      onPointerEnterCapture={undefined}
+      onPointerLeaveCapture={undefined}
     >
       <div className='container mx-auto flex items-center justify-between'>
         <div className='flex gap-2'>
@@ -123,6 +127,8 @@ export function Navbar() {
             className='text-lg font-bold text-center'
             placeholder={''}
             as='span'
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             Jennifer &amp; Mickaël
           </Typography>
@@ -151,6 +157,8 @@ export function Navbar() {
                 ? 'bg-cyan-700 text-white'
                 : 'bg-white bg-opacity-70 text-gray-900'
             } shadow-lg`}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             Log in
           </Button>
@@ -162,6 +170,8 @@ export function Navbar() {
           onClick={handleOpen}
           className='ml-auto inline-block lg:hidden'
           placeholder={''}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
         >
           {open ? (
             <XMarkIcon strokeWidth={2} className='h-6 w-6' />
@@ -186,6 +196,8 @@ export function Navbar() {
               variant='outlined'
               placeholder={''}
               onClick={() => setClicked(true)}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             >
               Log in
             </Button>
