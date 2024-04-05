@@ -73,7 +73,23 @@ export default function RootLayout({
   return (
     <html lang='en' className={`${roboto.variable} ${clicker.variable}`}>
       <head>
-        <link rel='shortcut icon' href='/favicon.png' type='image/png' />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+          href='/icons/favicon-32x32.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
+          href='/icons/favicon-16x16.png'
+        />
+        <link
+          rel='mask-icon'
+          href='/icons/safari-pinned-tab.svg'
+          color='#5bbad5'
+        />
       </head>
       <body>
         <Layout>{children}</Layout>

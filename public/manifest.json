@@ -1,6 +1,6 @@
 {
   "name": "DaSilva & Jegat Wedding",
-  "short_name": "Wedding",
+  "short_name": "Jenn&Micka",
   "icons": [
     {
       "src": "/icons/android-chrome-192x192.png",
@@ -9,18 +9,19 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/icons/android-chrome-384x384.png",
-      "sizes": "384x384",
+      "src": "/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon-512x512.png",
-      "sizes": "512x512",
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png"
     }
   ],
   "theme_color": "#FFFFFF",
   "background_color": "#FFFFFF",
+  "scope": "/",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait"
