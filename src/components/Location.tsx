@@ -28,6 +28,8 @@ const Location = () => {
                   variant='h1'
                   placeholder={''}
                   className='w-full lg:h-1/2 font-clicker text-deep-orange-900 pb-4'
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
                 >
                   Cérémonie
                 </Typography>
@@ -35,6 +37,8 @@ const Location = () => {
                   variant='h3'
                   placeholder={''}
                   className='lg:hidden w-full lg:h-1/2 text-bold text-white italic'
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
                 >
                   21.09.2024
                 </Typography>
@@ -42,6 +46,8 @@ const Location = () => {
                   variant='h3'
                   placeholder={''}
                   className='hidden lg:inline lg:h-1/2 text-bold text-white italic'
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
                 >
                   21 Septembre 2024
                 </Typography>
@@ -49,6 +55,8 @@ const Location = () => {
                   variant='h3'
                   placeholder={''}
                   className='w-full lg:h-1/2 text-bold text-white'
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
                 >
                   15h00
                 </Typography>
@@ -56,6 +64,8 @@ const Location = () => {
                   variant='h3'
                   placeholder={''}
                   className='w-full lg:h-1/2 font-clicker'
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
                 >
                   {"Église Notre-Dame-de-l'Assomption"}
                 </Typography>
@@ -63,6 +73,8 @@ const Location = () => {
                   variant='h6'
                   placeholder={''}
                   className='w-full lg:h-1/2 italic'
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
                 >
                   {"Rue de l'Église, 91370 Verrières-le-Buisson, France"}
                 </Typography>
@@ -73,6 +85,8 @@ const Location = () => {
                   onClick={() => {
                     setIsChurchHidden(!isChurchHidden)
                   }}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
                 >
                   Voir la carte
                 </Button>
@@ -132,6 +146,8 @@ const Location = () => {
                     variant='h1'
                     placeholder={''}
                     className='w-full lg:h-1/2 font-clicker text-deep-orange-900 pb-4'
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     Récéption
                   </Typography>
@@ -139,6 +155,8 @@ const Location = () => {
                     variant='h3'
                     placeholder={''}
                     className='lg:hidden w-full lg:h-1/2 text-bold text-white italic'
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     21.09.2024
                   </Typography>
@@ -146,6 +164,8 @@ const Location = () => {
                     variant='h3'
                     placeholder={''}
                     className='hidden lg:inline lg:h-1/2 text-bold text-white italic'
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     21 Septembre 2024
                   </Typography>
@@ -153,6 +173,8 @@ const Location = () => {
                     variant='h3'
                     placeholder={''}
                     className='w-full lg:h-1/2 text-bold text-white'
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     18h00
                   </Typography>
@@ -160,6 +182,8 @@ const Location = () => {
                     variant='h3'
                     placeholder={''}
                     className='w-full lg:h-1/2 font-clicker'
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     {'Les granges du Chesnay'}
                   </Typography>
@@ -167,6 +191,8 @@ const Location = () => {
                     variant='h6'
                     placeholder={''}
                     className='w-full lg:h-1/2 italic'
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     {'2 Sentier des Mésanges, 91150 Étampes, France'}
                   </Typography>
@@ -177,6 +203,8 @@ const Location = () => {
                     onClick={() => {
                       setIsBanquetHidden(!isBanquetHidden)
                     }}
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     Voir la carte
                   </Button>

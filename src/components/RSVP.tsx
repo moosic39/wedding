@@ -56,7 +56,7 @@ const RSVP = () => {
         setHidden(true)
       }, 4000)
     }
-  }, [getFieldState('presence').error])
+  }, [getFieldState])
 
   const isPlusOne = watch('plusOne')
   const isDietaryRestriction = watch('isDietaryRestriction')
@@ -72,13 +72,20 @@ const RSVP = () => {
         className='flex flex-col items-center'
       >
         <div className='w-full'>
-          <Typography variant='small' placeholder={''}>
+          <Typography
+            variant='small'
+            placeholder={''}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             <span className=' text-red-500'>*</span> champs requis
           </Typography>
         </div>
         <div className='my-4 md:flex w-full gap-4'>
           <div className='mb-4 md:mb-0 md:w-full'>
             <Input
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
               type='text'
               color='cyan'
               className=''
@@ -89,6 +96,8 @@ const RSVP = () => {
             />
           </div>
           <Input
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
             type='text'
             color='cyan'
             className=''
@@ -99,6 +108,8 @@ const RSVP = () => {
           />
         </div>
         <Input
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
           type='email'
           color='cyan'
           className=''
@@ -110,11 +121,15 @@ const RSVP = () => {
         <Typography
           placeholder={''}
           className={'p-2 pb-0 font-semibold flex w-full text-blue-gray-500'}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
         >
           Présence&nbsp;<span className={'text-red-500'}>*</span>
         </Typography>
         <div className='w-full flex justify-between gap-0 md:justify-start md:gap-x-60 lg:justify-normal lg:gap-0'>
           <Radio
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
             color='cyan'
             label='Je serai présent'
             value='present'
@@ -124,6 +139,8 @@ const RSVP = () => {
             {...register('presence', { required: true })}
           />
           <Radio
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
             color='cyan'
             label='Je serai absent'
             value='absent'
@@ -138,6 +155,8 @@ const RSVP = () => {
               className={`text-sm absolute my-8 mx-4 font-bold text-red-500 ${
                 hidden ? 'hidden' : ''
               }`}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             >
               Ce champ est requis
             </Typography>
@@ -145,6 +164,8 @@ const RSVP = () => {
         </div>
         <div className='w-full'>
           <Checkbox
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
             color='cyan'
             label='Je serai accompagné(e)'
             id='plusOne'
@@ -159,6 +180,8 @@ const RSVP = () => {
           <div className='my-4 md:flex w-full gap-4'>
             <div className='mb-4 md:mb-0 md:w-full'>
               <Input
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
                 type='text'
                 color='cyan'
                 className=''
@@ -169,6 +192,8 @@ const RSVP = () => {
             </div>
 
             <Input
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
               type='text'
               color='cyan'
               className=''
@@ -180,6 +205,8 @@ const RSVP = () => {
         )}
         <div className='mb-4 w-full'>
           <Checkbox
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
             color='cyan'
             label='Allergies/Restrictions alimentaires ?'
             id='isDietaryRestriction'
@@ -189,6 +216,8 @@ const RSVP = () => {
           />
           {isDietaryRestriction && (
             <Input
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
               type='text'
               color='cyan'
               className=''
@@ -200,6 +229,8 @@ const RSVP = () => {
         </div>
 
         <Textarea
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
           color='cyan'
           className='mb-4'
           label='Message'
@@ -214,13 +245,20 @@ const RSVP = () => {
               e.preventDefault()
             }}
             disabled={isSubmitting}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             {isSubmitting ? (
               <div className=' flex justify-center'>
                 <ArrowPathIcon width={29} className='animate-spin' />
               </div>
             ) : (
-              <Typography className='text-lg font-bold' placeholder={undefined}>
+              <Typography
+                className='text-lg font-bold'
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 Envoyer
               </Typography>
             )}
