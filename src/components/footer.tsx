@@ -1,7 +1,6 @@
 import { Typography, Button, IconButton } from '@material-tailwind/react'
 
 const CURRENT_YEAR = new Date().getFullYear()
-const LINKS = ['Company', 'About Us', 'Team', 'Products', 'Blog']
 
 export function Footer() {
   return (
@@ -36,6 +35,8 @@ export function Footer() {
             variant='h6'
             className='text-gray-900'
             placeholder={''}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             Powered by Vercel
           </Typography>
@@ -62,11 +63,20 @@ export function Footer() {
                 size='sm'
                 color='gray'
                 placeholder={''}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
                 <i className='fa-brands fa-twitter text-lg' />
               </IconButton>
             </a>
-            <IconButton size='sm' color='gray' variant='text' placeholder={''}>
+            <IconButton
+              size='sm'
+              color='gray'
+              variant='text'
+              placeholder={''}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               <i className='fa-brands fa-youtube text-lg' />
             </IconButton>
             <a href='https://www.instagram.com/m_jegat'>
@@ -75,6 +85,8 @@ export function Footer() {
                 color='gray'
                 variant='text'
                 placeholder={''}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
                 <i className='fa-brands fa-instagram text-lg' />
               </IconButton>
@@ -85,6 +97,8 @@ export function Footer() {
                 color='gray'
                 variant='text'
                 placeholder={''}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
                 <i className='fa-brands fa-github text-lg' />
               </IconButton>
@@ -95,6 +109,8 @@ export function Footer() {
           color='blue-gray'
           className='text-center mt-12 font-normal !text-gray-700 text-xs md:text-sm lg:text-base'
           placeholder={''}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
         >
           &copy; {CURRENT_YEAR} All Rights Reserved Mickael JEGAT
           <br />

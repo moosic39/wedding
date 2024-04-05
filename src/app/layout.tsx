@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Clicker_Script, Roboto } from 'next/font/google'
-import { Layout, FixedPlugin } from '@/components'
+import { Layout } from '@/components'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
@@ -36,10 +36,7 @@ export default function RootLayout({
         <link rel='shortcut icon' href='/favicon.png' type='image/png' />
       </head>
       <body>
-        <Layout>
-          {children}
-          {/* <FixedPlugin /> */}
-        </Layout>
+        <Layout>{children}</Layout>
         <link
           rel='stylesheet'
           href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'

@@ -25,6 +25,8 @@ const Card = ({ src, title, desc, className }: Card) => {
       <Typography
         placeholder={''}
         className='mb-2 text-blue-gray-700 text-2xl md:text-3xl lg:text-4xl font-clicker font-extrabold leading-tight relative -top-16'
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
       >
         {title}
       </Typography>

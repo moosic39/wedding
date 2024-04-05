@@ -12,6 +12,8 @@ function Hero() {
             variant='h2'
             className='mb-2 text-white text-2xl md:text-3xl lg:text-4xl'
             placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             Le Mariage de
           </Typography>
@@ -19,6 +21,8 @@ function Hero() {
             variant='h1'
             className='lg:max-w-3xl font-clicker text-6xl md:text-7xl lg:text-8xl mb-2 text-cyan-400'
             placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             Jennifer &amp; Mickaël
           </Typography>
@@ -26,6 +30,8 @@ function Hero() {
             variant='h3'
             className='mt-1 mb-12 w-full md:max-w-full text-xl md:text-2xl lg:text-3xl text-white'
             placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             ﹣ 21 Septembre 2024 ﹣
           </Typography>
