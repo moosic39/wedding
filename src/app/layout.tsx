@@ -1,5 +1,5 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Clicker_Script, Roboto } from 'next/font/google'
 import { Layout } from '@/components'
 import { Analytics } from '@vercel/analytics/react'
@@ -19,10 +19,50 @@ const roboto = Roboto({
   variable: '--font-roboto-mono',
 })
 
+const APP_NAME = 'Wedding'
+const APP_DEFAULT_TITLE = 'Mariage Jennifer & Mickaël'
+const APP_TITLE_TEMPLATE = '%s - Wedding'
+const APP_DESCRIPTION =
+  "Jennifer DaSilva et Mickaël Jégat se marient le 21 septembre 2024 à l’église de Notre-Dame de l'Assomption à Verriere."
+
 export const metadata: Metadata = {
-  title: 'Mariage Jennifer & Mickaël DaSilva Jégat',
-  description:
-    "Jennifer DaSilva et Mickaël Jégat se marient le 21 septembre 2024 à l’église de Notre-Dame de l'Assomption à Verriere.",
+  applicationName: APP_NAME,
+  title: {
+    default: APP_DEFAULT_TITLE,
+    template: APP_TITLE_TEMPLATE,
+  },
+  description: APP_DESCRIPTION,
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: APP_DEFAULT_TITLE,
+    // startUpImage: [],
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    siteName: APP_NAME,
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+  },
+  twitter: {
+    card: 'summary',
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#FFFFFF',
 }
 
 export default function RootLayout({
