@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#FFFFFF',
+  themeColor: '#173F62',
 }
 
 export default function RootLayout({
@@ -71,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='en' className={`${roboto.variable} ${clicker.variable}`}>
+    <html lang='fr' className={`${roboto.variable} ${clicker.variable}`}>
       <head>
         <link
           rel='icon'
@@ -88,7 +88,7 @@ export default function RootLayout({
         <link
           rel='mask-icon'
           href='/icons/safari-pinned-tab.svg'
-          color='#5bbad5'
+          color='#173F62'
         />
       </head>
       <body>
