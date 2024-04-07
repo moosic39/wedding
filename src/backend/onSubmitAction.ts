@@ -1,6 +1,7 @@
 'use server'
+import prisma from '@/lib/prisma'
 
-import { PrismaClient, User } from '@prisma/client'
+import { Answer } from '@prisma/client'
 
 const serverAction = async (formData: FormData) => {
   const firstName = formData.get('firstName')
@@ -21,13 +22,13 @@ const serverAction = async (formData: FormData) => {
     plusOneLastName,
     dietaryRestriction,
     message,
-  } as unknown as User
+    dateTime: new Date().toLocaleString(),
+  } as unknown as Answer
 
   console.log(data)
-  const prisma = new PrismaClient()
   console.log('connect')
 
-  const existingMail = await prisma.user.findUnique({
+  const existingMail = await prisma.answer.findUnique({
     where: {
       email: email as string,
     },
@@ -38,7 +39,7 @@ const serverAction = async (formData: FormData) => {
     await prisma.$disconnect()
     return { message: 'Mail déjà existant', status: 'error' }
   } else {
-    await prisma.user
+    await prisma.answer
       .create({ data })
       .catch(async (e: Error) => {
         console.error(e)
