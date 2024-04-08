@@ -15,6 +15,7 @@
   "dependencies": {
     "@auth/core": "0.28.2",
     "@auth/prisma-adapter": "1.5.2",
+    "@aws-sdk/client-s3": "3.550.0",
     "@ducanh2912/next-pwa": "10.2.6",
     "@heroicons/react": "2.1.1",
     "@material-tailwind/react": "2.1.8",
