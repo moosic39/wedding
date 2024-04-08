@@ -16,6 +16,7 @@ import {
 } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { Alert } from './ui-components/atom'
+import { signIn, signOut } from 'next-auth/react'
 
 interface NavItemProps {
   children: ReactNode
@@ -71,7 +72,7 @@ const NAV_MENU = [
   },
 ]
 
-export function Navbar() {
+export const Navbar = ({ session }: any) => {
   const [open, setOpen] = useState(false)
   const [isScrolling, setIsScrolling] = useState(false)
   const [clicked, setClicked] = useState(false)
@@ -147,22 +148,48 @@ export function Navbar() {
           ))}
         </ul>
         <div className='hidden items-center gap-4 lg:flex'>
-          
-          <Button
-            placeholder={''}
-            onClick={() => setClicked(true)}
-            className={`${
-              isScrolling
-                ? 'bg-cyan-700 text-white'
-                : 'bg-white bg-opacity-70 text-gray-900'
-            } shadow-lg`}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            Log in
-          </Button>
-          {/* </a> */}
+          {session ? (
+            <>
+              <Button
+                placeholder={''}
+                onClick={() => signOut()}
+                className={`${
+                  isScrolling
+                    ? 'bg-cyan-700 text-white'
+                    : 'bg-white bg-opacity-70 text-gray-900'
+                } shadow-lg`}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
+                Log out
+              </Button>
+              {session.user?.image && (
+                <Image
+                  width={128}
+                  height={128}
+                  className='rounded-full w-8 h-8'
+                  src={session.user?.image ?? ''}
+                  alt={session.user?.name ?? ''}
+                />
+              )}
+            </>
+          ) : (
+            <Button
+              placeholder={''}
+              onClick={() => signIn()}
+              className={`${
+                isScrolling
+                  ? 'bg-cyan-700 text-white'
+                  : 'bg-white bg-opacity-70 text-gray-900'
+              } shadow-lg`}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              Log in
+            </Button>
+          )}
         </div>
+
         <IconButton
           variant='text'
           color={isScrolling ? 'gray' : 'white'}
@@ -178,6 +205,15 @@ export function Navbar() {
             <Bars3Icon strokeWidth={2} className='h-6 w-6' />
           )}
         </IconButton>
+        {session?.user?.image && (
+          <Image
+            width={128}
+            height={128}
+            className='rounded-full w-8 h-8 lg:hidden'
+            src={session.user?.image ?? ''}
+            alt={session.user?.name ?? ''}
+          />
+        )}
       </div>
       <Collapse open={open}>
         <div className='container mx-auto mt-4 rounded-lg bg-white px-6 py-5'>
@@ -190,17 +226,35 @@ export function Navbar() {
             ))}
           </ul>
           <div className='mt-6 flex items-center gap-4'>
-            {/* <a href='/signin'> */}
-            <Button
-              variant='outlined'
-              placeholder={''}
-              onClick={() => setClicked(true)}
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-            >
-              Log in
-            </Button>
-            {/* </a> */}
+            {session ? (
+              <Button
+                placeholder={''}
+                onClick={() => signOut()}
+                className={`${
+                  isScrolling
+                    ? 'bg-cyan-700 text-white'
+                    : 'bg-white bg-opacity-70 text-gray-900'
+                } shadow-lg`}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
+                Log out
+              </Button>
+            ) : (
+              <Button
+                placeholder={''}
+                onClick={() => signIn()}
+                className={`${
+                  isScrolling
+                    ? 'bg-cyan-700 text-white'
+                    : 'bg-white bg-opacity-70 text-gray-900'
+                } shadow-lg`}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
+                Log in
+              </Button>
+            )}
           </div>
         </div>
       </Collapse>
