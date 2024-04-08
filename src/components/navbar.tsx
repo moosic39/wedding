@@ -147,9 +147,8 @@ export function Navbar() {
           ))}
         </ul>
         <div className='hidden items-center gap-4 lg:flex'>
-          {/* <a href='/signin'> */}
+          
           <Button
-            // color={isScrolling ? 'cyan' : 'white'}
             placeholder={''}
             onClick={() => setClicked(true)}
             className={`${

@@ -12,7 +12,7 @@ const Signin = async () => {
   return (
     <div>
       {session ? (
-        <div>
+        <>
           {session.user?.image && (
             <Image
               width={128}
@@ -24,11 +24,9 @@ const Signin = async () => {
           )}
           <p>Signed in as {session.user?.name}</p>
           <LogoutButton />
-        </div>
+        </>
       ) : (
-        <div>
-          <LoginButton />
-        </div>
+        <LoginButton />
       )}
       <SimpleRegistrationForm />
     </div>
