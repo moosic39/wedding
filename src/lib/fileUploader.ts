@@ -7,7 +7,7 @@ const region = process.env.AWS_REGION as string
 const accessKeyId = process.env.AWS_ACCESS_ID as string
 const secretAccessKey = process.env.AWS_SECRET_ID as string
 
-const s3Config: S3ClientConfig = {
+export const s3Config: S3ClientConfig = {
   credentials: {
     accessKeyId,
     secretAccessKey,
@@ -15,7 +15,7 @@ const s3Config: S3ClientConfig = {
   region,
 }
 
-export const UploadImage = async (formData: FormData) => {
+export const uploadImage = async (formData: FormData) => {
   try {
     const file = formData.get('file') as File
     const folderName = formData.get('folderName') as string

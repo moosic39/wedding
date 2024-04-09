@@ -1,10 +1,13 @@
 'use client'
 import { useState } from 'react'
 import Image from 'next/image'
-import { UploadImage } from '@/lib/fileUploader'
+import { uploadImage, UploadImage } from '@/lib/fileUploader'
+import { set } from 'react-hook-form'
 
 const Uploader = ({ sessionName }: { sessionName: string }) => {
   const [file, setFile] = useState<string>()
+
+  const formData = new FormData()
 
   const handleChange = async (e: any) => {
     console.log(e.target.files)
@@ -22,7 +25,18 @@ const Uploader = ({ sessionName }: { sessionName: string }) => {
   return (
     <div className='App'>
       <h2>Add Image:</h2>
-      <input type='file' onChange={handleChange} />
+
+      <form>
+        <input type='file' multiple />
+        <button
+          type='submit'
+          onClick={() => {
+            uploadImage(formData)
+          }}
+        >
+          Submit
+        </button>
+      </form>
       {file && <Image src={file} alt={'name'} width={100} height={100} />}
     </div>
   )
