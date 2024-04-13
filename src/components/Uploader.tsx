@@ -5,6 +5,7 @@ import { storeData } from '@/lib/storeMetadata'
 import { Alert } from './ui-components/atom'
 import { uploadImage } from '@/lib/fileUploader'
 import { snakeCase } from '@/helpers/stringParser'
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 
 const Uploader = ({ sessionName }: { sessionName: string }) => {
   const [file, setFile] = useState<string>()
@@ -21,6 +22,15 @@ const Uploader = ({ sessionName }: { sessionName: string }) => {
     formData.append('file', file as File)
     formData.append('folderName', userName)
     await uploadImage(formData)
+
+    const presignedUrl = await getSignedUrl(
+      {
+        bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME as string,
+        key: `${userName}/${file.name.replace(/\s/g, '_')}`,
+      },
+      { expiresIn: 0 },
+    )
+    formData.append('presignedUrl', presignedUrl)
     formData.append('fileName', file.name.replace(/\s/g, '_'))
     formData.append('fileType', file.type)
     formData.append('fileSize', file.size.toString())
