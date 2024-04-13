@@ -29,8 +29,7 @@ export const uploadImage = async (formData: FormData) => {
       Body: Buffer.from(await file.arrayBuffer()),
     })
     // const res = await s3.uploadFile(Buffer.from(await file.arrayBuffer()))
-    const res = await s3.send(command)
-    return res
+    return await s3.send(command)
   } catch (e) {
     return 'Image Upload failed'
   }
