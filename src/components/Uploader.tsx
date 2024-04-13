@@ -23,13 +23,10 @@ const Uploader = ({ sessionName }: { sessionName: string }) => {
     formData.append('folderName', userName)
     await uploadImage(formData)
 
-    const presignedUrl = await getSignedUrl(
-      {
-        bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME as string,
-        key: `${userName}/${file.name.replace(/\s/g, '_')}`,
-      },
-      { expiresIn: 0 },
-    )
+    const presignedUrl = await getSignedUrl({
+      bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME as string,
+      key: `${userName}/${file.name.replace(/\s/g, '_')}`,
+    })
     formData.append('presignedUrl', presignedUrl)
     formData.append('fileName', file.name.replace(/\s/g, '_'))
     formData.append('fileType', file.type)
