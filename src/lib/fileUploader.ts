@@ -1,19 +1,7 @@
 'use server'
 
-import { PutObjectCommand, S3Client, S3ClientConfig } from '@aws-sdk/client-s3'
-
-const Bucket = process.env.AWS_BUCKET_NAME as string
-const region = process.env.AWS_REGION as string
-const accessKeyId = process.env.AWS_ACCESS_ID as string
-const secretAccessKey = process.env.AWS_SECRET_ID as string
-
-export const s3Config: S3ClientConfig = {
-  credentials: {
-    accessKeyId,
-    secretAccessKey,
-  },
-  region,
-}
+import { Bucket, s3Config } from '@/constant/s3Config'
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 
 export const uploadImage = async (formData: FormData) => {
   try {
@@ -25,12 +13,13 @@ export const uploadImage = async (formData: FormData) => {
 
     const command = new PutObjectCommand({
       Bucket,
-      Key: `${folderName}/${file.name}`,
+      Key: `${folderName}/${file.name.replace(/\s/g, '_')}`,
       Body: Buffer.from(await file.arrayBuffer()),
     })
     // const res = await s3.uploadFile(Buffer.from(await file.arrayBuffer()))
     return await s3.send(command)
   } catch (e) {
-    return 'Image Upload failed'
+    console.error(e)
+    // return 'Image Upload failed'
   }
 }

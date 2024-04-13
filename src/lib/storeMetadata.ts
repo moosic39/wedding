@@ -40,17 +40,16 @@ export const storeData = async (formData: FormData) => {
   } as unknown as Photo
 
   // TODO: one catch
-  try {
-    return await prisma.photo
-      .create({ data })
-      .catch(async (e: Error) => {
-        console.error(e)
-        process.exit(1)
-        return { message: 'Photo non téléchargée', status: 'error' }
-      })
-      .finally(async () => {
-        console.log('disconnect')
-        await prisma.$disconnect()
-      })
-  } catch (e) {}
+
+  return await prisma.photo
+    .create({ data })
+    .catch(async (e: Error) => {
+      console.error(e)
+      process.exit(1)
+      // return { message: 'Photo non téléchargée', status: 'error' }
+    })
+    .finally(async () => {
+      console.log('disconnect')
+      await prisma.$disconnect()
+    })
 }

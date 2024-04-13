@@ -17,6 +17,11 @@ const Upload = async () => {
       width: 1,
       height: 1,
     },
+    {
+      src: 'https://wedding-app-jdsmj.s3.eu-west-3.amazonaws.com/Micka%C3%ABl_Jegat/Wedding_Logo_Rounded.png',
+      width: 1,
+      height: 1,
+    },
   ]
 
   return (

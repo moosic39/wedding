@@ -1,9 +1,9 @@
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3'
-import { s3Config } from './fileUploader'
+import { Bucket, s3Config } from '@/constant/s3Config'
 
 const getObjectParams: GetObjectCommand = {
-  Bucket: process.env.AWS_BUCKET_NAME as string,
+  Bucket,
   Key: 'example.jpg',
 }
 const client = new S3Client({ ...s3Config })
