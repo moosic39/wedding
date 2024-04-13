@@ -1,14 +1,14 @@
 'use client'
 import { useState } from 'react'
 import Image from 'next/image'
-import { uploadImage } from '@/lib/fileUploader'
-import { Alert } from './ui-components/atom'
+import { UploadImage } from '@/lib/fileUploader'
 import { storeData } from '@/lib/storeMetadata'
+import { Alert } from './ui-components/atom'
 
 const Uploader = ({ sessionName }: { sessionName: string }) => {
   const [file, setFile] = useState<string>()
+  const [open, setOpen] = useState<boolean>(false)
   const [message, setMessage] = useState<string>()
-  const [isValid, setIsValid] = useState<boolean>(false)
 
   const handleChange = async (e: any) => {
     console.log(e.target.files)
@@ -18,18 +18,21 @@ const Uploader = ({ sessionName }: { sessionName: string }) => {
     const file = e.target.files[0]
     formData.append('file', file as File)
     formData.append('folderName', sessionName)
-    await uploadImage(formData)
-    const data = {
-      url: `${process.env.NEXT_PUBLIC_S3_URL}/${sessionName}/${file.name}`,
-      width: file.size,
-      height: file.type,
-      userId: sessionName || 'anonymous',
+    await UploadImage(formData)
+    formData.append('fileName', file.name)
+    formData.append('fileType', file.type)
+    formData.append('fileSize', file.size.toString())
+    formData.append('userId', sessionName)
+    formData.append('url', `${sessionName}/${file.name}`)
+    formData.append('width', '100')
+    formData.append('height', '100')
+    const data = await storeData(formData)
+
+    if (data.status === 'error') {
+      console.error(data.message)
+      setMessage(data.message)
+      setOpen(true)
     }
-    console.log(data)
-    const response = await storeData(data)
-    setMessage(response.message)
-    setIsValid(response.status === 'error')
-    return response
   }
 
   return (
@@ -39,12 +42,12 @@ const Uploader = ({ sessionName }: { sessionName: string }) => {
         <input type='file' onChange={handleChange} />
       </form>
       {file && <Image src={file} alt={'name'} width={100} height={100} />}
+
       <Alert
+        onClose={() => setOpen(false)}
+        open={open}
         message={message}
-        variant={isValid ? 'success' : 'error'}
-        open={!!message}
-        onClose={() => setMessage('')}
-        timeout={4000}
+        variant='error'
       />
     </div>
   )

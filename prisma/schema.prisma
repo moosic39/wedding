@@ -70,7 +70,7 @@ model VerificationToken {
 model Photo {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   url       String
-  createdAt DateTime
+  createdAt String
   width     Int
   height    Int
   userId    String
@@ -89,7 +89,7 @@ model Comment {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   photoId   String
   userId    String
-  createdAt DateTime
+  createdAt String
   body      String
   user      User     @relation(fields: [userId], references: [id])
   photo     Photo    @relation(fields: [photoId], references: [id])
