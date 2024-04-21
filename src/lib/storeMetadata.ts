@@ -1,52 +1,46 @@
 'use server'
 import { Photo } from '@prisma/client'
 import prisma from './prisma'
+import { getImageSize } from 'next/dist/server/image-optimizer'
 
 export const storeData = async (formData: FormData) => {
-  // const url = formData.get('url') as string
-  // const width = formData.get('width') as string
-  // const height = formData.get('height') as string
-  // const userId = formData.get('userId') as string
-  // const size = formData.get('size') as string
-  // const tags = formData.get('tags') as string
-  // const focal = formData.get('focal') as string
-  // const camera = formData.get('camera') as string
-  // const iso = formData.get('iso') as string
-  // const aperture = formData.get('aperture') as string
-  // const shutter = formData.get('shutter') as string
-  // const comments = formData.get('comments') as string
+  const file = formData.get('file') as File
+  const { width, height } = await getImageSize(
+    Buffer.from(await file.arrayBuffer()),
+    file.type as 'jpeg' | 'png',
+  )
 
   const sendingData = {
-    url: formData.get('url') as string,
-    width: formData.get('width') as string,
-    height: formData.get('height') as string,
+    src: formData.get('src') as string,
+    width: width!.toString() ?? '1',
+    height: height!.toString() ?? '1',
     userId: formData.get('userId') as string,
+    fileName: formData.get('fileName') as string,
+    size: formData.get('fileSize') as string,
+    tags: formData.get('tags') as string,
+    focal: formData.get('focal') as string,
+    camera: formData.get('camera') as string,
+    iso: formData.get('iso') as string,
+    aperture: formData.get('aperture') as string,
+    shutter: formData.get('shutter') as string,
+    comments: formData.get('comments') as string,
   }
 
   const data = {
-    url: sendingData.url,
+    src: sendingData.src,
     createdAt: new Date().toLocaleString(),
     width: Number(sendingData.width),
     height: Number(sendingData.height),
     userId: sendingData.userId,
-    // size,
-    // tags: tags.split(','),
-    // focal,
-    // camera,
-    // iso,
-    // aperture,
-    // shutter,
-    // comments: comments.split(','),
+    size: Number(sendingData.size),
+    fileName: sendingData.fileName,
   } as unknown as Photo
-
-  // TODO: one catch
 
   return await prisma.photo
     .create({ data })
     .catch(async (e: Error) => {
       console.error(e)
       process.exit(1)
-      // return { message: 'Photo non téléchargée', status: 'error' }
     })
     .finally(async () => {
       console.log('disconnect')
