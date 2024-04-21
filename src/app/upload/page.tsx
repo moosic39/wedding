@@ -1,13 +1,21 @@
+import React from 'react'
+import GalleryContainer from '@/components/ui-components/GalleryContainer'
 import Uploader from '@/components/Uploader'
 import { auth } from '@/lib/auth'
-import React from 'react'
+import { getUserMetadata } from '@/lib/getMetadata'
+import { capitalizeSnakeCase } from '@/helpers/stringParser'
 
 const Upload = async () => {
   const session = await auth()
-  // return <ImageUploader />
+
+  const userId = capitalizeSnakeCase(session?.user?.name!) ?? 'Anonymous'
+
+  const photos = await getUserMetadata(userId)
+
   return (
     <div>
-      <Uploader sessionName={session?.user?.name ?? 'anonymous'} />
+      <Uploader userName={userId} />
+      <GalleryContainer photos={photos} />
     </div>
   )
 }
