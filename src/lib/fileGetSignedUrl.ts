@@ -18,7 +18,7 @@ export const getPreSignedImage = async (
     Key: `${folderName}/${fileName}`,
   })
   try {
-    return await getSignedUrl(s3, getCommand, { expiresIn: 3600 })
+    return await getSignedUrl(s3, getCommand, { expiresIn: 3600 * 24 * 7 })
   } catch (e) {
     console.error(e)
     return 'Error: Image Upload failed'
