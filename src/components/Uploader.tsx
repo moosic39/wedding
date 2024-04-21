@@ -4,37 +4,32 @@ import Image from 'next/image'
 import { storeData } from '@/lib/storeMetadata'
 import { Alert } from './ui-components/atom'
 import { uploadImage } from '@/lib/fileUploader'
-import { snakeCase } from '@/helpers/stringParser'
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
+import { getPreSignedImage } from '@/lib/fileGetSignedUrl'
 
-const Uploader = ({ sessionName }: { sessionName: string }) => {
+const Uploader = ({ userName }: { userName: string }) => {
   const [file, setFile] = useState<string>()
   const [open, setOpen] = useState<boolean>(false)
-
-  const userName = sessionName.replace(/\s/g, '_')
 
   const handleChange = async (e: any) => {
     console.log(e.target.files)
     setFile(URL.createObjectURL(e.target.files[0]))
 
     const formData = new FormData()
-    const file = e.target.files[0]
-    formData.append('file', file as File)
+    const file = e.target.files[0] as File
+
+    formData.append('file', file)
     formData.append('folderName', userName)
     await uploadImage(formData)
+    console.log('file', file)
 
-    const presignedUrl = await getSignedUrl({
-      bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME as string,
-      key: `${userName}/${file.name.replace(/\s/g, '_')}`,
-    })
-    formData.append('presignedUrl', presignedUrl)
     formData.append('fileName', file.name.replace(/\s/g, '_'))
     formData.append('fileType', file.type)
     formData.append('fileSize', file.size.toString())
     formData.append('userId', userName)
-    formData.append('url', `${userName}/${file.name.replace(/\s/g, '_')}`)
-    formData.append('width', '100')
-    formData.append('height', '100')
+
+    const presignedUrl = await getPreSignedImage(formData)
+    console.log('presignedUrl', presignedUrl)
+    formData.append('src', presignedUrl)
     await storeData(formData)
   }
 
@@ -42,7 +37,11 @@ const Uploader = ({ sessionName }: { sessionName: string }) => {
     <div className='App'>
       <h2>Add Image:</h2>
       <form>
-        <input type='file' onChange={handleChange} />
+        <input
+          type='file'
+          accept='image/png, image/jpeg'
+          onChange={handleChange}
+        />
       </form>
       {file && <Image src={file} alt={'name'} width={100} height={100} />}
 
