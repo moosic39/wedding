@@ -55,6 +55,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Comment       Comment[]
 }
 
 model VerificationToken {
@@ -64,4 +65,33 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Photo {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  src       String
+  createdAt String
+  fileName  String
+  width     Int
+  height    Int
+  userId    String
+  size      Int?
+  tags      String[]  @default([])
+  focal     String?
+  camera    String?
+  iso       Int?
+  aperture  Float?
+  shutter   String?
+  lens      String?
+  comments  Comment[]
+}
+
+model Comment {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  photoId   String
+  userId    String
+  createdAt String
+  body      String
+  user      User   @relation(fields: [userId], references: [id])
+  photo     Photo  @relation(fields: [photoId], references: [id])
 }
