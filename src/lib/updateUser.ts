@@ -2,14 +2,15 @@
 
 import prisma from './prisma'
 
-export const getUserMetadata = async (userId: string) => {
+export const updateUserMetadata = async (userId: string, data: FormData) => {
   if (!userId || userId === 'Anonymous') return []
-  console.log(userId)
 
-  const data = await prisma.user
-    .findMany({
-      where: {
-        id: userId,
+  return await prisma.user
+    .update({
+      where: { id: userId },
+      data: {
+        firstName: data.get('firstName') as string,
+        lastName: data.get('lastName') as string,
       },
     })
     .catch(async (e: Error) => {
@@ -20,6 +21,4 @@ export const getUserMetadata = async (userId: string) => {
       console.log('disconnect')
       await prisma.$disconnect()
     })
-  console.log(data)
-  return data
 }
