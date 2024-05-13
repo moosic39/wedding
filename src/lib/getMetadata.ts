@@ -3,6 +3,8 @@
 import prisma from './prisma'
 
 export const getUserMetadata = async (userId: string) => {
+  if (!userId || userId === 'Anonymous') return []
+
   return await prisma.photo
     .findMany({
       where: {

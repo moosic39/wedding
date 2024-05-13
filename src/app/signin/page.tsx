@@ -1,4 +1,4 @@
-import { SimpleRegistrationForm } from '@/components/SimpleRegistrationForm'
+import { SimpleLoginForm } from '@/components/SimpleLoginForm'
 import {
   LoginButton,
   LogoutButton,
@@ -28,7 +28,7 @@ const Signin = async () => {
       ) : (
         <LoginButton />
       )}
-      <SimpleRegistrationForm />
+      <SimpleLoginForm />
     </div>
   )
 }
