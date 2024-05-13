@@ -1,5 +1,7 @@
+import Facebook from 'next-auth/providers/facebook'
 import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
+import Instagram from 'next-auth/providers/instagram'
 import Email from 'next-auth/providers/nodemailer'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/lib/prisma'
@@ -19,6 +21,8 @@ const providers: Provider[] = [
     from: process.env.EMAIL_FROM,
   }),
   Google,
+  Facebook,
+  Instagram,
   GitHub,
 ]
 
