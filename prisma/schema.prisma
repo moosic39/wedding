@@ -70,6 +70,7 @@ model VerificationToken {
 model Photo {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   src       String
+  url       String
   createdAt String
   fileName  String
   width     Int

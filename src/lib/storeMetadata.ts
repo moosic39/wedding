@@ -3,7 +3,11 @@ import { Photo } from '@prisma/client'
 import prisma from './prisma'
 import { getImageSize } from 'next/dist/server/image-optimizer'
 
-export const storeData = async (formData: FormData) => {
+export const storeData = async (
+  formData: FormData,
+  presignedUrl: string,
+  url: string,
+) => {
   const file = formData.get('file') as File
   const { width, height } = await getImageSize(
     Buffer.from(await file.arrayBuffer()),
@@ -11,7 +15,8 @@ export const storeData = async (formData: FormData) => {
   )
 
   const sendingData = {
-    src: formData.get('src') as string,
+    src: presignedUrl,
+    url: url,
     width: width!.toString() ?? '1',
     height: height!.toString() ?? '1',
     userId: formData.get('userId') as string,
@@ -28,6 +33,7 @@ export const storeData = async (formData: FormData) => {
 
   const data = {
     src: sendingData.src,
+    url: sendingData.url,
     createdAt: new Date().toLocaleString(),
     width: Number(sendingData.width),
     height: Number(sendingData.height),

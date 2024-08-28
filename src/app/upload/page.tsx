@@ -1,9 +1,9 @@
 import React from 'react'
 import GalleryContainer from '@/components/ui-components/GalleryContainer'
-import Uploader from '@/components/Uploader'
 import { auth } from '@/lib/auth'
 import { getUserMetadata } from '@/lib/getMetadata'
 import { capitalizeSnakeCase } from '@/helpers/stringParser'
+import FileUploadComponent from '@/components/Uploaderv2'
 
 const Upload = async () => {
   const session = await auth()
@@ -24,7 +24,7 @@ const Upload = async () => {
 
   return (
     <div className='p-12'>
-      <Uploader userName={userId} />
+      <FileUploadComponent userName={userId} />
       <GalleryContainer photos={photos} />
     </div>
   )
