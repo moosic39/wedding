@@ -23,6 +23,7 @@
     "@prisma/client": "5.12.1",
     "@vercel/analytics": "1.1.2",
     "@vercel/speed-insights": "1.0.8",
+    "lodash": "4.17.21",
     "next": "14.1.0",
     "next-auth": "5.0.0-beta.16",
     "nodemailer": "6.9.13",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@types/node": "20",
+    "@types/lodash": "4.17.7",
     "@types/react": "18",
     "@types/react-dom": "18",
     "autoprefixer": "10",

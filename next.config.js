@@ -19,7 +19,8 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ["www.jegat-dasilva.fr", 'www.moosic.fr', 'localhost']
+      allowedOrigins: ["www.jegat-dasilva.fr", 'www.moosic.fr', 'localhost'],
+      bodySizeLimit: '50000000',
     }
   }
 };

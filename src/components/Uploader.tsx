@@ -5,6 +5,7 @@ import { storeData } from '@/lib/storeMetadata'
 import { Alert } from './ui-components/atom'
 import { uploadImage } from '@/lib/fileUploader'
 import { getPreSignedImage } from '@/lib/fileGetSignedUrl'
+import { Bucket, s3Config } from '@/constant/s3Config'
 
 const Uploader = ({ userName }: { userName: string }) => {
   const [file, setFile] = useState<string>()
@@ -30,7 +31,13 @@ const Uploader = ({ userName }: { userName: string }) => {
     const presignedUrl = await getPreSignedImage(formData)
     console.log('presignedUrl', presignedUrl)
     formData.append('src', presignedUrl)
-    await storeData(formData)
+    await storeData(
+      formData,
+      presignedUrl,
+      `https://${Bucket}.s3.${
+        s3Config.region
+      }.amazonaws.com/${file.name.replace(/\s/g, '_')}`,
+    )
   }
 
   return (
