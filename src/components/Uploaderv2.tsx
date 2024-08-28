@@ -61,8 +61,25 @@ const FileUploadComponent = ({ userName }: { userName: string }) => {
         type='file'
         multiple
         onChange={handleFileChange}
-        accept='image/jpeg, image/png'
+        accept='image/*'
         disabled={uploading}
+        placeholder='Upload multiple files'
+      />
+      <input
+        type='file'
+        onChange={handleFileChange}
+        accept='image/*'
+        disabled={uploading}
+        capture='environment'
+        placeholder='Capture from camera (back)'
+      />
+      <input
+        type='file'
+        onChange={handleFileChange}
+        accept='image/*'
+        disabled={uploading}
+        capture='user'
+        placeholder='Capture from camera (front)'
       />
       {uploading && <p>Uploading files, please wait...</p>}
       <div style={{ display: 'flex', justifyContent: 'center' }}>
