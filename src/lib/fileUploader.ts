@@ -76,7 +76,7 @@ const uploadFileToS3 = async (formData: FormData) => {
     Bucket,
     Key: `${sanitizeString(folderName)}/${sanitizeString(file.name)}`,
     Body: Buffer.from(await file.arrayBuffer()),
-    ContentType: 'image/jpeg, image/png',
+    ContentType: 'image/*',
   }
 
   try {
