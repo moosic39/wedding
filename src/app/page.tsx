@@ -8,6 +8,7 @@ import Bio from '@/components/Bio'
 import RSVP from '@/components/RSVP'
 import Location from '@/components/Location'
 import { auth } from '@/lib/auth'
+import Menu from '@/components/Menu'
 
 export default async function Home() {
   const session = await auth()
@@ -20,6 +21,7 @@ export default async function Home() {
       <Location />
       <Countdown />
       <RSVP />
+      <Menu />
       <Footer />
     </>
   )
