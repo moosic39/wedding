@@ -9,7 +9,7 @@ import RSVP from '@/components/RSVP'
 import Location from '@/components/Location'
 import { auth } from '@/lib/auth'
 import Menu from '@/components/Menu'
-import { isProd } from '@/constant/env'
+import { isDev, isProd } from '@/constant/env'
 
 export default async function Home() {
   const session = await auth()
@@ -22,7 +22,7 @@ export default async function Home() {
       <Location />
       <Countdown />
       {!isProd && <RSVP />}
-      <Menu />
+      {isDev && <Menu />}
       <Footer />
     </>
   )
