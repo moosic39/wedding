@@ -7,8 +7,20 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/lib/prisma'
 import NextAuth, { NextAuthConfig } from 'next-auth'
 import { Provider } from '@auth/core/providers'
+import Credentials from '@auth/core/providers/credentials'
 
 const providers: Provider[] = [
+  // Credentials({
+  //   credentials: {
+  //     username: { label: 'Username' },
+  //     password: { label: 'Password', type: 'password' },
+  //   },
+  //   async authorize({ request }) {
+  //     const response = await fetch(request)
+  //     if (!response.ok) return null
+  //     return (await response.json()) ?? null
+  //   },
+  // }),
   Email({
     server: {
       host: process.env.SMTP_HOST,
@@ -22,7 +34,7 @@ const providers: Provider[] = [
   }),
   Google,
   Facebook,
-  Instagram,
+  // Instagram,
   GitHub,
 ]
 
@@ -31,6 +43,7 @@ const authOptions: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
   // pages: {
   //   signIn: '/signin',
+  //   newUser: '/signup',
   // },
   theme: {
     colorScheme: 'dark',

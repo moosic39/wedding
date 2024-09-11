@@ -5,6 +5,7 @@ import { uploadMultipleFilesToS3 } from '@/lib/fileUploader'
 import { useState } from 'react'
 import { Alert } from './ui-components/atom'
 import Image from 'next/image'
+import { Button, Progress } from '@material-tailwind/react'
 
 const FileUploadComponent = ({ userName }: { userName: string }) => {
   const [uploading, setUploading] = useState(false)
@@ -57,13 +58,50 @@ const FileUploadComponent = ({ userName }: { userName: string }) => {
 
   return (
     <div>
-      <input
+      <div className='flex flex-col items-center p-5 border-2 border-dashed border-cyan-700 rounded-lg w-full max-w-md mx-auto cursor-pointer text-center'>
+        <InputButton
+          uploading={uploading}
+          label='Upload Photos'
+          id='multiple-file-upload'
+          handleFileChange={handleFileChange}
+          inputProps={{ multiple: true }}
+        />
+        <InputButton
+          uploading={uploading}
+          label='Capture from Back Camera'
+          id='file-upload-camera-back'
+          handleFileChange={handleFileChange}
+          inputProps={{ capture: 'environment' }}
+        />
+        <InputButton
+          uploading={uploading}
+          label='Capture from Front Camera'
+          id='file-upload-camera-front'
+          handleFileChange={handleFileChange}
+          inputProps={{ capture: 'user' }}
+        />
+
+        {uploadResults.length > 0 && (
+          <div className={'mt-5 text-left w-full'}>
+            <h4>Selected Files:</h4>
+            {uploadResults.map((file, index) => (
+              <Image
+                key={index}
+                src={file}
+                alt={`Uploaded image ${index + 1}`}
+                fill={true}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* <input
         type='file'
         multiple
         onChange={handleFileChange}
         accept='image/*'
         disabled={uploading}
-        placeholder='Upload multiple files'
       />
       <input
         type='file'
@@ -92,7 +130,7 @@ const FileUploadComponent = ({ userName }: { userName: string }) => {
             height={100}
           />
         ))}
-      </div>
+      </div> */}
 
       <Alert
         onClose={() => setOpen(false)}
@@ -106,3 +144,39 @@ const FileUploadComponent = ({ userName }: { userName: string }) => {
 }
 
 export default FileUploadComponent
+
+const InputButton = ({
+  uploading,
+  label,
+  id,
+  handleFileChange,
+  inputProps,
+}: {
+  uploading: boolean
+  label: string
+  id: string
+  handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  inputProps: React.InputHTMLAttributes<HTMLInputElement>
+}) => {
+  return (
+    <Button
+      placeholder={undefined}
+      loading={uploading}
+      onPointerEnterCapture={undefined}
+      onPointerLeaveCapture={undefined}
+      className='lg:w-1/2 md:w-1/2 w-full h-14 bg-cyan-700 rounded-2xl'
+    >
+      <input
+        type='file'
+        onChange={handleFileChange}
+        accept='image/*'
+        id={id}
+        {...inputProps}
+        className='hidden'
+      />
+      <label className={' text-white p-2.5 rounded-md mt-2.5'} htmlFor={id}>
+        {!uploading ? label : 'Uploading files, please wait...'}
+      </label>
+    </Button>
+  )
+}

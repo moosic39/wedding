@@ -8,6 +8,8 @@ import Bio from '@/components/Bio'
 import RSVP from '@/components/RSVP'
 import Location from '@/components/Location'
 import { auth } from '@/lib/auth'
+import Menu from '@/components/Menu'
+import { isDev, isProd } from '@/constant/env'
 
 export default async function Home() {
   const session = await auth()
@@ -19,7 +21,8 @@ export default async function Home() {
       <Bio />
       <Location />
       <Countdown />
-      <RSVP />
+      {!isProd && <RSVP />}
+      {isDev && <Menu />}
       <Footer />
     </>
   )

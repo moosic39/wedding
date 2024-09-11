@@ -50,15 +50,16 @@ const Countdown = (): JSX.Element => {
         onPointerLeaveCapture={undefined}
       >
         <div className={'flex justify-center'}>
-          <div className={'flex flex-row'}>
-            <div className={'p-2'}>{time.months}mois</div>
-            <div className={'p-2'}>{time.days}j</div>
-          </div>
-          <div className={'flex flex-row'}>
-            <div className={'p-2'}>{time.hours}h</div>
-            <div className={'p-2'}>{time.minutes}min</div>
-            <div className={'p-2'}>{time.seconds}sec</div>
-          </div>
+          {/* <div className={'flex flex-row'}> */}
+          {/* <div className={'p-2'}>{time.months}mois</div> */}
+          {/* <div className={'p-2'}>{time.days}j</div> */}
+          {/* </div> */}
+          {/* <div className={'flex flex-row'}> */}
+          <div className={'p-2'}>{time.days}j</div>
+          <div className={'p-2'}>{time.hours}h</div>
+          <div className={'p-2'}>{time.minutes}min</div>
+          <div className={'p-2'}>{time.seconds}sec</div>
+          {/* </div> */}
         </div>
       </Typography>
     </Container>

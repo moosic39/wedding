@@ -1,6 +1,9 @@
 'use client'
 
-import Gallery from 'react-photo-gallery'
+import { Carousel, Dialog } from '@material-tailwind/react'
+import Image from 'next/image'
+import { useState } from 'react'
+import LibGallery from 'react-photo-gallery'
 
 type Photo = {
   src: string
@@ -8,7 +11,11 @@ type Photo = {
   height: number
 }
 
-const GalleryContainer = ({ photos }: { photos: Photo[] | undefined }) => {
+export const GalleryContainer = ({
+  photos,
+}: {
+  photos: Photo[] | undefined
+}) => {
   const fallbackPhotos = [
     {
       src: 'https://images.unsplash.com/photo-1712023105222-653af4f805b6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHx8',
@@ -26,8 +33,84 @@ const GalleryContainer = ({ photos }: { photos: Photo[] | undefined }) => {
       height: 1,
     },
   ]
+  const [open, setOpen] = useState(false)
+  const [src, setSrc] = useState('')
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
 
-  return <Gallery photos={photos ? photos : fallbackPhotos} />
+  const handlePhotoClick = (e: any) => {
+    console.log('photo clicked', e.target)
+    setOpen(true)
+    setSrc(e.target.src)
+    setWidth(e.target.width)
+    setHeight(e.target.height)
+  }
+
+  return (
+    <div className='gallery-container'>
+      <LibGallery
+        margin={8}
+        direction='row'
+        onClick={handlePhotoClick}
+        photos={photos ?? fallbackPhotos}
+      />
+      <Dialog
+        size='xl'
+        open={open}
+        placeholder={undefined}
+        onPointerLeave={() => setOpen(false)}
+        onMouseLeave={() => setOpen(false)}
+        onPointerOut={() => setOpen(false)}
+        onPointerLeaveCapture={() => setOpen(false)}
+        handler={function (value: any): void {
+          throw new Error('Function not implemented.')
+        }}
+        onPointerEnterCapture={undefined}
+        // className='flex align-middle justify-center'
+      >
+        <Image
+          src={src}
+          alt='Uploaded image'
+          width={width}
+          height={height}
+          className=' flex align-middle justify-center object-fill'
+        />
+      </Dialog>
+    </div>
+  )
 }
 
-export default GalleryContainer
+export const GalleryWithCarousel = ({
+  photos,
+}: {
+  photos: Photo[] | undefined
+}) => {
+  console.log('photos', photos)
+  return (
+    <Carousel
+      loop={true}
+      autoplay={true}
+      placeholder={undefined}
+      onPointerEnterCapture={undefined}
+      onPointerLeaveCapture={undefined}
+    >
+      {photos?.map((photo, index) => (
+        <Image
+          key={index}
+          src={photo.src}
+          alt={`Uploaded image ${index + 1}`}
+          width={photo.width}
+          height={photo.height}
+          className='object-cover w-full h-full'
+        />
+      ))}
+    </Carousel>
+  )
+}
+
+const Gallery = {
+  default: GalleryContainer,
+  Carousel: GalleryWithCarousel,
+}
+
+export default Gallery

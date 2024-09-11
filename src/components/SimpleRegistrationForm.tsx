@@ -1,4 +1,5 @@
 'use client'
+
 import {
   Card,
   Input,
@@ -150,7 +151,7 @@ export const SimpleRegistrationForm = () => {
             onPointerLeaveCapture={undefined}
           >
             Already have an account?&nbsp;
-            <a href='#' className='font-medium text-cyan-500 underline'>
+            <a href='/signin' className='font-medium text-cyan-500 underline'>
               Log In
             </a>
           </Typography>

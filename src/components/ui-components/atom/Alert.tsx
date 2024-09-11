@@ -8,7 +8,7 @@ import {
   XCircleIcon,
 } from '@heroicons/react/24/solid'
 
-interface AlertCustomStylesProps {
+export interface AlertCustomStylesProps {
   message?: string
   onOpen?: () => void
   className?: string
