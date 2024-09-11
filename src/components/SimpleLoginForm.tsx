@@ -1,5 +1,4 @@
-'use client'
-
+import { providerMap } from '@/lib/auth'
 import { Card, Input, Button, Typography } from '@material-tailwind/react'
 import { signIn } from 'next-auth/react'
 
@@ -93,7 +92,7 @@ export const SimpleLoginForm = () => {
           >
             Log In
           </Button>
-          {/* {Object.values(providerMap).map((provider) => (
+          {Object.values(providerMap).map((provider) => (
             <Button
               key={provider.id}
               className='mt-6'
@@ -109,7 +108,7 @@ export const SimpleLoginForm = () => {
             >
               Log In with {provider.name}
             </Button>
-          ))} */}
+          ))}
           <Typography
             color='cyan'
             className='mt-4 text-center font-normal'
@@ -118,7 +117,7 @@ export const SimpleLoginForm = () => {
             onPointerLeaveCapture={undefined}
           >
             Don&apos;t have an account yet?&nbsp;
-            <a href='#' className='font-medium text-cyan-500 underline'>
+            <a href='/signup' className='font-medium text-cyan-500 underline'>
               Sign up
             </a>
           </Typography>

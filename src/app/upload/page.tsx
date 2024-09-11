@@ -1,5 +1,5 @@
 import React from 'react'
-import GalleryContainer from '@/components/ui-components/GalleryContainer'
+import { GalleryContainer } from '@/components/ui-components/GalleryContainer'
 import { auth } from '@/lib/auth'
 import { getUserMetadata } from '@/lib/getMetadata'
 import { capitalizeSnakeCase } from '@/helpers/stringParser'
@@ -26,6 +26,7 @@ const Upload = async () => {
     <div className='p-12'>
       <FileUploadComponent userName={userId} />
       <GalleryContainer photos={photos} />
+      {/* <GalleryWithCarousel photos={photos} /> */}
     </div>
   )
 }
