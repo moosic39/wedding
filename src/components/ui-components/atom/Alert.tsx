@@ -1,5 +1,5 @@
 'use client'
-import { Alert } from '@material-tailwind/react'
+import { Alert, Progress } from '@material-tailwind/react'
 import { FC, useEffect } from 'react'
 import {
   CheckCircleIcon,
@@ -12,10 +12,11 @@ export interface AlertCustomStylesProps {
   message?: string
   onOpen?: () => void
   className?: string
-  variant?: 'success' | 'warning' | 'error' | 'info'
+  variant?: 'success' | 'warning' | 'error' | 'info' | 'uploadImage'
   timeout?: number
   open: boolean
   onClose: () => void
+  progressValue?: number
 }
 
 const AlertCustomAnimation: FC<AlertCustomStylesProps> = ({
@@ -26,6 +27,7 @@ const AlertCustomAnimation: FC<AlertCustomStylesProps> = ({
   timeout = 3000,
   open,
   onClose,
+  progressValue = 50,
 }) => {
   const variantMap = {
     success: {
@@ -48,6 +50,11 @@ const AlertCustomAnimation: FC<AlertCustomStylesProps> = ({
       icon: <InformationCircleIcon width={24} />,
       message: 'ℹ Info ℹ',
     },
+    uploadImage: {
+      color: 'border-[#2d9cdb] bg-white text-[#2d9cdb]',
+      icon: <InformationCircleIcon width={24} />,
+      message,
+    },
   }
 
   useEffect(() => {
@@ -60,7 +67,7 @@ const AlertCustomAnimation: FC<AlertCustomStylesProps> = ({
   }, [open, timeout, onOpen, onClose])
 
   return (
-    <div className='fixed top-20 z-50 right-0 w-4/5 md:w-3/5 lg:w-2/5'>
+    <div className=' fixed top-20 z-50 right-0 w-4/5 md:w-3/5 lg:w-2/5'>
       <Alert
         open={open}
         icon={variantMap[variant].icon}
@@ -70,6 +77,15 @@ const AlertCustomAnimation: FC<AlertCustomStylesProps> = ({
           unmount: { x: 50 },
         }}
       >
+        {variant === 'uploadImage' && (
+          <Progress
+            color='cyan'
+            value={progressValue}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          />
+        )}
         {message ?? variantMap[variant].message}
       </Alert>
     </div>
