@@ -1,14 +1,13 @@
 import { Provider } from '@auth/core/providers'
-import Credentials from '@auth/core/providers/credentials'
 import Facebook from '@auth/core/providers/facebook'
 import GitHub from '@auth/core/providers/github'
 import Google from '@auth/core/providers/google'
-import Instagram from '@auth/core/providers/instagram'
 import Email from '@auth/core/providers/nodemailer'
 import Twitter from '@auth/core/providers/twitter'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/lib/prisma'
 import NextAuth, { NextAuthConfig } from 'next-auth'
+import { isProd } from '@/constant/env'
 
 const providers: Provider[] = [
   // Credentials({
@@ -35,10 +34,6 @@ const providers: Provider[] = [
   }),
   Google,
   Facebook,
-  Instagram({
-    clientId: process.env.INSTAGRAM_CLIENT_ID,
-    clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
-  }),
   GitHub,
   Twitter,
 ]
@@ -61,7 +56,7 @@ const authOptions: NextAuthConfig = {
     },
   },
   trustHost: true,
-  debug: true,
+  debug: !isProd,
 }
 
 export const providerMap = providers.map((provider) => {
