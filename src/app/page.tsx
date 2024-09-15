@@ -5,24 +5,23 @@ import { Navbar, Footer } from '@/components'
 import Hero from './hero'
 import Countdown from '@/components/Countdown'
 import Bio from '@/components/Bio'
-import RSVP from '@/components/RSVP'
 import Location from '@/components/Location'
 import { auth } from '@/lib/auth'
 import Menu from '@/components/Menu'
-import { isDev, isProd } from '@/constant/env'
+import IsLogged from '@/components/IsLoged'
 
 export default async function Home() {
   const session = await auth()
-
+  const isVisible = Date.now() < new Date(1726920000000).getTime()
   return (
     <>
       <Navbar session={session} />
       <Hero />
       <Bio />
       <Location />
-      <Countdown />
-      {!isProd && <RSVP />}
-      {isDev && <Menu />}
+      {isVisible && <Countdown />}
+      {session?.user && <IsLogged session={session} />}
+      <Menu />
       <Footer />
     </>
   )

@@ -4,7 +4,8 @@ import { Container } from './ui-components/atom'
 import { Typography } from '@material-tailwind/react'
 
 const Countdown = (): JSX.Element => {
-  const launch = new Date(1726930800000).getTime()
+  const launch = new Date(1726920000000).getTime()
+
   const [countdown, setCountdown] = useState<number>(0)
 
   useEffect(() => {

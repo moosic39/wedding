@@ -1,0 +1,177 @@
+'use client'
+
+import { Session } from 'next-auth'
+import React from 'react'
+import { Alert } from './ui-components/atom'
+import {
+  IconButton,
+  SpeedDial,
+  SpeedDialHandler,
+  SpeedDialContent,
+  SpeedDialAction,
+} from '@material-tailwind/react'
+import {
+  ArrowUpOnSquareIcon,
+  DevicePhoneMobileIcon,
+  CameraIcon as CameraIconOutline,
+} from '@heroicons/react/24/outline'
+import { CameraIcon } from '@heroicons/react/24/solid'
+
+import { uploadMultipleFilesToS3 } from '@/lib/fileUploader'
+
+const IsLogged = ({ session }: { session: Session }) => {
+  const [open, setOpen] = React.useState<boolean>(true)
+  const [uploading, setUploading] = React.useState<boolean>(false)
+  const username = session.user?.name ?? 'Anonymous'
+  const [progressValue, setProgressValue] = React.useState<number>(0)
+
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const files = event.target.files
+    if (files && files.length > 0) {
+      setUploading(true)
+      try {
+        const formDataArray = Array.from(files).map((file) => {
+          const formData = new FormData()
+          formData.append('file', file)
+          formData.append('folderName', username)
+          formData.append('fileName', file.name)
+          formData.append('fileType', file.type)
+          formData.append('fileSize', file.size.toString())
+          formData.append('userId', username)
+          formData.append('src', '') // Placeholder for the S3 presigned URL
+          formData.append('url', '') // Placeholder for the S3 URL
+          formData.append('width', '0') // Placeholder for the image width
+          formData.append('height', '0') // Placeholder for the image height
+          formData.append('tags', '') // Placeholder for the image tags
+          formData.append('focal', '') // Placeholder for the image focal length
+          formData.append('camera', '') // Placeholder for the image camera
+          formData.append('iso', '') // Placeholder for the image ISO
+          formData.append('aperture', '') // Placeholder for the image aperture
+          formData.append('shutter', '') // Placeholder for the image shutter speed
+          formData.append('comments', '') // Placeholder for the image comments
+          formData.append('createdAt', new Date().toLocaleString())
+          return formData
+        })
+
+        await uploadMultipleFilesToS3(formDataArray)
+      } catch (error) {
+        setOpen(true)
+        console.error('Error during file upload:', error)
+      } finally {
+        setUploading(false)
+      }
+    }
+  }
+
+  return (
+    <>
+      <Alert
+        message={`Bonjour ${session?.user?.name}`}
+        variant={'warning'}
+        timeout={4000}
+        onClose={() => setOpen(false)}
+        open={open}
+      />
+      {uploading && (
+        <Alert
+          message={'Uploading files, please wait...'}
+          variant={'uploadImage'}
+          timeout={1000000}
+          onClose={() => {
+            setOpen(false)
+            setUploading(false)
+          }}
+          open={open}
+          progressValue={100}
+        />
+      )}
+      <div className='relative w-5/6'>
+        <input
+          type='file'
+          multiple
+          onChange={handleFileChange}
+          id='multiple-file-upload'
+          accept='image/*'
+          className='hidden'
+        />
+        <input
+          type='file'
+          onChange={handleFileChange}
+          id='file-upload-camera-back'
+          accept='image/*'
+          capture='environment'
+          className='hidden'
+        />
+        <input
+          type='file'
+          onChange={handleFileChange}
+          accept='image/*'
+          id='file-upload-camera-front'
+          capture='user'
+          className='hidden'
+        />
+        <div className='fixed bottom-4 right-4'>
+          <SpeedDial>
+            <SpeedDialHandler>
+              <IconButton
+                size='lg'
+                className='rounded-full'
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
+                <CameraIcon className='h-5 w-5' />
+              </IconButton>
+            </SpeedDialHandler>
+            <SpeedDialContent
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              <SpeedDialAction
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
+                <label
+                  htmlFor='multiple-file-upload'
+                  className='h-full w-full flex items-center justify-center'
+                >
+                  <ArrowUpOnSquareIcon className='h-5 w-5' />
+                </label>
+              </SpeedDialAction>
+              <SpeedDialAction
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
+                <label
+                  htmlFor='file-upload-camera-back'
+                  className='h-full w-full flex items-center justify-center'
+                >
+                  <CameraIconOutline className='h-5 w-5' />
+                </label>
+              </SpeedDialAction>
+              <SpeedDialAction
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
+                <label
+                  htmlFor='file-upload-camera-front'
+                  className='h-full w-full flex items-center justify-center'
+                >
+                  <DevicePhoneMobileIcon className='h-5 w-5' />
+                </label>
+              </SpeedDialAction>
+            </SpeedDialContent>
+          </SpeedDial>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default IsLogged
