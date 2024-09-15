@@ -10,6 +10,18 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/lib/prisma'
 import NextAuth, { NextAuthConfig } from 'next-auth'
 
+export const InstagramAuthProvider: Provider = Instagram({
+  clientId: process.env.AUTH_INSTAGRAM_ID,
+  clientSecret: process.env.AUTH_INSTAGRAM_SECRET,
+  authorization:
+    'https://api.instagram.com/oauth/authorize?scope=user_profile,user_media',
+  /**
+   * https://github.com/nextauthjs/next-auth/issues/8868
+   * Profile is not set for instagram as it cannot be used to authenticate a user,
+   * only for fetching media and user info.
+   */
+})
+
 const providers: Provider[] = [
   // Credentials({
   //   credentials: {
@@ -35,10 +47,7 @@ const providers: Provider[] = [
   }),
   Google,
   Facebook,
-  Instagram({
-    clientId: process.env.INSTAGRAM_CLIENT_ID,
-    clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
-  }),
+  InstagramAuthProvider,
   GitHub,
   Twitter,
 ]
@@ -73,4 +82,9 @@ export const providerMap = providers.map((provider) => {
   }
 })
 
-export const { auth, handlers, signIn, signOut } = NextAuth(authOptions)
+export const {
+  auth,
+  handlers: { GET, POST },
+  signIn,
+  signOut,
+} = NextAuth(authOptions)
