@@ -85,7 +85,6 @@ export const GalleryWithCarousel = ({
 }: {
   photos: Photo[] | undefined
 }) => {
-  console.log('photos', photos)
   return (
     <Carousel
       loop={true}
@@ -93,6 +92,7 @@ export const GalleryWithCarousel = ({
       placeholder={undefined}
       onPointerEnterCapture={undefined}
       onPointerLeaveCapture={undefined}
+      className='h-screen w-screen'
     >
       {photos?.map((photo, index) => (
         <Image
@@ -101,7 +101,7 @@ export const GalleryWithCarousel = ({
           alt={`Uploaded image ${index + 1}`}
           width={photo.width}
           height={photo.height}
-          className='object-cover w-full h-full'
+          className=' object-contain h-full w-full'
         />
       ))}
     </Carousel>
