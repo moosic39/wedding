@@ -5,6 +5,7 @@ import GitHub from '@auth/core/providers/github'
 import Google from '@auth/core/providers/google'
 import Instagram from '@auth/core/providers/instagram'
 import Email from '@auth/core/providers/nodemailer'
+import Twitter from '@auth/core/providers/twitter'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/lib/prisma'
 import NextAuth, { NextAuthConfig } from 'next-auth'
@@ -39,6 +40,7 @@ const providers: Provider[] = [
     clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
   }),
   GitHub,
+  Twitter,
 ]
 
 const authOptions: NextAuthConfig = {
@@ -58,6 +60,8 @@ const authOptions: NextAuthConfig = {
       console.error(code, message)
     },
   },
+  trustHost: true,
+  debug: true,
 }
 
 export const providerMap = providers.map((provider) => {
