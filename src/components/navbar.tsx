@@ -11,12 +11,12 @@ import {
   XMarkIcon,
   Bars3Icon,
   CalendarDaysIcon,
-  InboxArrowDownIcon,
   MapPinIcon,
 } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { Alert } from './ui-components/atom'
 import { signIn, signOut } from 'next-auth/react'
+import { ClipboardDocumentListIcon } from '@heroicons/react/24/outline'
 
 interface NavItemProps {
   children: ReactNode
@@ -65,9 +65,9 @@ const NAV_MENU = [
     target: '_self',
   },
   {
-    name: 'RSVP',
-    icon: InboxArrowDownIcon,
-    href: '#rsvp',
+    name: 'Menu',
+    icon: ClipboardDocumentListIcon,
+    href: '#menu',
     target: '_self',
   },
 ]
