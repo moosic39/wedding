@@ -41,7 +41,7 @@ const Location = () => {
                     onPointerEnterCapture={undefined}
                     onPointerLeaveCapture={undefined}
                   >
-                    Cérémonie Civil
+                    Cérémonie Civile
                   </Typography>
                   <Typography
                     variant='h3'
@@ -116,7 +116,7 @@ const Location = () => {
                   title='Mairie de Massy'
                 ></iframe>
                 <Image
-                  src={'/image/Eglise.webp'}
+                  src={'/image/Mairie.webp'}
                   width={600}
                   height={400}
                   alt='Mairie de Massy'
