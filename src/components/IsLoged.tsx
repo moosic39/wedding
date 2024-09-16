@@ -1,7 +1,7 @@
 'use client'
 
 import { Session } from 'next-auth'
-import React from 'react'
+import { useState } from 'react'
 import { Alert } from './ui-components/atom'
 import {
   IconButton,
@@ -18,19 +18,20 @@ import {
 import { CameraIcon } from '@heroicons/react/24/solid'
 
 import { uploadMultipleFilesToS3 } from '@/lib/fileUploader'
+import Error from 'next/error'
 
 const IsLogged = ({ session }: { session: Session }) => {
-  const [open, setOpen] = React.useState<boolean>(true)
-  const [uploading, setUploading] = React.useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(true)
+  const [openUpload, setOpenUpload] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
   const username = session.user?.name ?? 'Anonymous'
-  const [progressValue, setProgressValue] = React.useState<number>(0)
 
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const files = event.target.files
     if (files && files.length > 0) {
-      setUploading(true)
+      setOpenUpload(true)
       try {
         const formDataArray = Array.from(files).map((file) => {
           const formData = new FormData()
@@ -56,11 +57,10 @@ const IsLogged = ({ session }: { session: Session }) => {
         })
 
         await uploadMultipleFilesToS3(formDataArray)
-      } catch (error) {
+      } catch (error: any) {
+        setErrorMessage(error.message)
         setOpen(true)
         console.error('Error during file upload:', error)
-      } finally {
-        setUploading(false)
       }
     }
   }
@@ -74,19 +74,26 @@ const IsLogged = ({ session }: { session: Session }) => {
         onClose={() => setOpen(false)}
         open={open}
       />
-      {uploading && (
+      {errorMessage && (
         <Alert
-          message={'Uploading files, please wait...'}
-          variant={'uploadImage'}
-          timeout={1000000}
-          onClose={() => {
-            setOpen(false)
-            setUploading(false)
-          }}
-          open={open}
-          progressValue={100}
+          message={errorMessage}
+          variant={'error'}
+          timeout={4000}
+          onClose={() => setOpenUpload(false)}
+          open={openUpload}
         />
       )}
+
+      <Alert
+        message={'Uploading files, please wait...'}
+        variant={'uploadImage'}
+        timeout={4000}
+        onClose={() => {
+          setOpenUpload(false)
+        }}
+        open={openUpload}
+      />
+
       <div className='relative w-5/6'>
         <input
           type='file'

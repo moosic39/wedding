@@ -27,7 +27,6 @@ const AlertCustomAnimation: FC<AlertCustomStylesProps> = ({
   timeout = 3000,
   open,
   onClose,
-  progressValue = 50,
 }) => {
   const variantMap = {
     success: {
@@ -77,15 +76,6 @@ const AlertCustomAnimation: FC<AlertCustomStylesProps> = ({
           unmount: { x: 50 },
         }}
       >
-        {variant === 'uploadImage' && (
-          <Progress
-            color='cyan'
-            value={progressValue}
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          />
-        )}
         {message ?? variantMap[variant].message}
       </Alert>
     </div>
