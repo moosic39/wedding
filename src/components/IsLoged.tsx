@@ -18,7 +18,6 @@ import {
 import { CameraIcon } from '@heroicons/react/24/solid'
 
 import { uploadMultipleFilesToS3 } from '@/lib/fileUploader'
-import Error from 'next/error'
 
 const IsLogged = ({ session }: { session: Session }) => {
   const [open, setOpen] = useState<boolean>(true)
@@ -31,7 +30,6 @@ const IsLogged = ({ session }: { session: Session }) => {
   ) => {
     const files = event.target.files
     if (files && files.length > 0) {
-      setOpenUpload(true)
       try {
         const formDataArray = Array.from(files).map((file) => {
           const formData = new FormData()
@@ -57,9 +55,10 @@ const IsLogged = ({ session }: { session: Session }) => {
         })
 
         await uploadMultipleFilesToS3(formDataArray)
+        setOpenUpload(true)
       } catch (error: any) {
         setErrorMessage(error.message)
-        setOpen(true)
+        setOpenUpload(true)
         console.error('Error during file upload:', error)
       }
     }
@@ -74,7 +73,7 @@ const IsLogged = ({ session }: { session: Session }) => {
         onClose={() => setOpen(false)}
         open={open}
       />
-      {errorMessage && (
+      {errorMessage ? (
         <Alert
           message={errorMessage}
           variant={'error'}
@@ -82,17 +81,17 @@ const IsLogged = ({ session }: { session: Session }) => {
           onClose={() => setOpenUpload(false)}
           open={openUpload}
         />
+      ) : (
+        <Alert
+          message={'Uploading files, please wait...'}
+          variant={'uploadImage'}
+          timeout={4000}
+          onClose={() => {
+            setOpenUpload(false)
+          }}
+          open={openUpload}
+        />
       )}
-
-      <Alert
-        message={'Uploading files, please wait...'}
-        variant={'uploadImage'}
-        timeout={4000}
-        onClose={() => {
-          setOpenUpload(false)
-        }}
-        open={openUpload}
-      />
 
       <div className='relative w-5/6'>
         <input
