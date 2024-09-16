@@ -6,11 +6,11 @@ import { random } from 'lodash'
 
 const SlideShow = async () => {
   const photos = await getAllMetadata()
-  photos.sort(() => random(-1, 1))
+  const shufflePhotos = photos.toSorted(() => random(-1, 1))
 
   return (
     <div className='h-full w-full bg-blue-gray-900'>
-      <GalleryWithCarousel photos={photos} />
+      <GalleryWithCarousel photos={shufflePhotos} />
     </div>
   )
 }
