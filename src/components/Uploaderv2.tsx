@@ -5,7 +5,7 @@ import { uploadMultipleFilesToS3 } from '@/lib/fileUploader'
 import { useState } from 'react'
 import { Alert } from './ui-components/atom'
 import Image from 'next/image'
-import { Button, Progress } from '@material-tailwind/react'
+import { Button } from '@material-tailwind/react'
 
 const FileUploadComponent = ({ userName }: { userName: string }) => {
   const [uploading, setUploading] = useState(false)
@@ -95,43 +95,6 @@ const FileUploadComponent = ({ userName }: { userName: string }) => {
           </div>
         )}
       </div>
-
-      {/* <input
-        type='file'
-        multiple
-        onChange={handleFileChange}
-        accept='image/*'
-        disabled={uploading}
-      />
-      <input
-        type='file'
-        onChange={handleFileChange}
-        accept='image/*'
-        disabled={uploading}
-        capture='environment'
-        placeholder='Capture from camera (back)'
-      />
-      <input
-        type='file'
-        onChange={handleFileChange}
-        accept='image/*'
-        disabled={uploading}
-        capture='user'
-        placeholder='Capture from camera (front)'
-      />
-      {uploading && <p>Uploading files, please wait...</p>}
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {uploadResults.map((url, index) => (
-          <Image
-            key={index}
-            src={url}
-            alt={`Uploaded image ${index + 1}`}
-            width={100}
-            height={100}
-          />
-        ))}
-      </div> */}
-
       <Alert
         onClose={() => setOpen(false)}
         open={open}

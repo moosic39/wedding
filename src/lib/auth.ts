@@ -2,7 +2,7 @@ import { Provider } from '@auth/core/providers'
 import Facebook from '@auth/core/providers/facebook'
 import GitHub from '@auth/core/providers/github'
 import Google from '@auth/core/providers/google'
-import Email from '@auth/core/providers/nodemailer'
+import Email from '@auth/core/providers/email'
 import Twitter from '@auth/core/providers/twitter'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/lib/prisma'
@@ -48,7 +48,7 @@ const authOptions: NextAuthConfig = {
   theme: {
     colorScheme: 'dark',
     brandColor: '#0096a7',
-    logo: '/logos/wedding_logo_v1_rounded.png',
+    logo: '/logos/wedding_logo_v1_rounded.webp',
   },
   logger: {
     error(code, ...message) {

@@ -45,6 +45,8 @@ function NavItem({ children, href, target, setOpen }: NavItemProps) {
   )
 }
 
+const isVisible = Date.now() < new Date(1726920000000).getTime()
+
 const NAV_MENU = [
   {
     name: 'Les Mariés',
@@ -58,12 +60,16 @@ const NAV_MENU = [
     href: '#location',
     target: '_self',
   },
-  {
-    name: 'Le jour J',
-    icon: CalendarDaysIcon,
-    href: '#countdown',
-    target: '_self',
-  },
+  ...(isVisible
+    ? [
+        {
+          name: 'Le jour J',
+          icon: CalendarDaysIcon,
+          href: '#countdown',
+          target: '_self',
+        },
+      ]
+    : []),
   {
     name: 'Menu',
     icon: ClipboardDocumentListIcon,
@@ -115,7 +121,7 @@ export const Navbar = ({ session }: any) => {
         <div className='flex gap-2'>
           <a href='/'>
             <Image
-              src='/logos/wedding_logo_v1_rounded.png'
+              src='/logos/wedding_logo_v1_rounded.webp'
               alt='logo'
               className='h-8 w-8 object-cover'
               width={32}
@@ -163,7 +169,7 @@ export const Navbar = ({ session }: any) => {
               >
                 Log out
               </Button>
-              {session.user?.image && (
+              {session.user?.image ? (
                 <Image
                   width={128}
                   height={128}
@@ -171,22 +177,39 @@ export const Navbar = ({ session }: any) => {
                   src={session.user?.image ?? ''}
                   alt={session.user?.name ?? ''}
                 />
+              ) : (
+                <Image
+                  width={128}
+                  height={128}
+                  className='rounded-full w-8 h-8'
+                  src={'/logos/Anonymous.webp'}
+                  alt={'Anonymous User'}
+                />
               )}
             </>
           ) : (
-            <Button
-              placeholder={''}
-              onClick={() => signIn()}
-              className={`${
-                isScrolling
-                  ? 'bg-cyan-700 text-white'
-                  : 'bg-white bg-opacity-70 text-gray-900'
-              } shadow-lg`}
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-            >
-              Log in
-            </Button>
+            <>
+              <Button
+                placeholder={''}
+                onClick={() => signIn()}
+                className={`${
+                  isScrolling
+                    ? 'bg-cyan-700 text-white'
+                    : 'bg-white bg-opacity-70 text-gray-900'
+                } shadow-lg`}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
+                Log in
+              </Button>
+              <Image
+                width={128}
+                height={128}
+                className='rounded-full w-8 h-8'
+                src={'/logos/Anonymous.webp'}
+                alt={'Anonymous User'}
+              />
+            </>
           )}
         </div>
 
@@ -205,13 +228,21 @@ export const Navbar = ({ session }: any) => {
             <Bars3Icon strokeWidth={2} className='h-6 w-6' />
           )}
         </IconButton>
-        {session?.user?.image && (
+        {session?.user?.image ? (
           <Image
             width={128}
             height={128}
             className='rounded-full w-8 h-8 lg:hidden'
             src={session.user?.image ?? ''}
             alt={session.user?.name ?? ''}
+          />
+        ) : (
+          <Image
+            width={128}
+            height={128}
+            className='rounded-full w-8 h-8 lg:hidden'
+            src={'/logos/Anonymous.webp'}
+            alt={'Anonymous User'}
           />
         )}
       </div>
