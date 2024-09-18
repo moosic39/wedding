@@ -13,6 +13,7 @@ import IsLogged from '@/components/IsLoged'
 export default async function Home() {
   const session = await auth()
   const isVisible = Date.now() < new Date(1726920000000).getTime()
+
   return (
     <>
       <Navbar session={session} />
@@ -20,7 +21,7 @@ export default async function Home() {
       <Bio />
       <Location />
       {isVisible && <Countdown />}
-      {session?.user && <IsLogged session={session} />}
+      <IsLogged sessionUser={session?.user} />
       <Menu />
       <Footer />
     </>

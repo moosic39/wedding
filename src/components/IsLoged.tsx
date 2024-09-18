@@ -18,12 +18,22 @@ import {
 import { CameraIcon } from '@heroicons/react/24/solid'
 
 import { uploadMultipleFilesToS3 } from '@/lib/fileUploader'
+import { parseMail } from '@/helpers/stringParser'
 
-const IsLogged = ({ session }: { session: Session }) => {
+const getUsername = (sessionUser?: Session['user']) => {
+  if (!sessionUser) return 'Anonymous'
+  return sessionUser?.name
+    ? sessionUser.name
+    : sessionUser?.email
+    ? parseMail(sessionUser.email).username
+    : 'Anonymous'
+}
+
+const IsLogged = ({ sessionUser }: { sessionUser?: Session['user'] }) => {
+  const username = getUsername(sessionUser)
   const [open, setOpen] = useState<boolean>(true)
   const [openUpload, setOpenUpload] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const username = session.user?.name ?? 'Anonymous'
 
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -66,13 +76,15 @@ const IsLogged = ({ session }: { session: Session }) => {
 
   return (
     <>
-      <Alert
-        message={`Bonjour ${session?.user?.name}`}
-        variant={'warning'}
-        timeout={4000}
-        onClose={() => setOpen(false)}
-        open={open}
-      />
+      {username !== 'Anonymous' && (
+        <Alert
+          message={`Bonjour ${username}`}
+          variant={'warning'}
+          timeout={4000}
+          onClose={() => setOpen(false)}
+          open={open}
+        />
+      )}
       {errorMessage ? (
         <Alert
           message={errorMessage}

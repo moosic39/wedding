@@ -25,3 +25,16 @@ export const camelCase = (str: string) => {
     .replace(/^./, (str) => str.toLowerCase())
     .replace(/ /g, '')
 }
+
+export const parseMail = (email: string) => {
+  const emailParts = email.split('@')
+  const username = emailParts[0]
+    .replace('.', ' ')
+    .replace('_', ' ')
+    .replace('-', ' ')
+    .replace(/\d/g, '')
+
+  const domain = emailParts[1]
+
+  return { username, domain }
+}
