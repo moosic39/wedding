@@ -16,7 +16,9 @@ export const getPreSignedImage = async (
   const folderName = formData.get('folderName') as string
   const getCommand = new GetObjectCommand({
     Bucket,
-    Key: `${sanitizeString(folderName)}/${sanitizeString(fileName)}`,
+    Key: `${await sanitizeString(folderName)}/${await sanitizeString(
+      fileName,
+    )}`,
   })
   try {
     return await getSignedUrl(s3, getCommand, { expiresIn: 3600 * 24 * 7 })

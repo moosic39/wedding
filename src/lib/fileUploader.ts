@@ -5,7 +5,7 @@ import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { getPreSignedImage } from './fileGetSignedUrl'
 import { storeData } from './storeMetadata'
 
-export const sanitizeString = (fileName: string) => {
+export const sanitizeString = async (fileName: string) => {
   return fileName
     .replace(/\s/g, '_')
     .normalize('NFD') // Normalize to decompose accents
@@ -23,7 +23,9 @@ const uploadFileToS3 = async (formData: FormData) => {
 
   const uploadParams = {
     Bucket,
-    Key: `${sanitizeString(folderName)}/${sanitizeString(file.name)}`,
+    Key: `${await sanitizeString(folderName)}/${await sanitizeString(
+      file.name,
+    )}`,
     Body: Buffer.from(await file.arrayBuffer()),
     ContentType: file.type, // Set the correct content type
   }
