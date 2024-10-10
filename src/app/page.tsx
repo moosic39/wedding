@@ -9,6 +9,7 @@ import Location from '@/components/Location'
 import { auth } from '@/lib/auth'
 import Menu from '@/components/Menu'
 import IsLogged from '@/components/IsLoged'
+import RSVP from '@/components/RSVP'
 
 export default async function Home() {
   const session = await auth()
@@ -20,7 +21,8 @@ export default async function Home() {
       <Hero />
       <Bio />
       <Location />
-      {isVisible && <Countdown />}
+      {!isVisible && <Countdown />}
+      {!isVisible && <RSVP />}
       <IsLogged sessionUser={session?.user} />
       <Menu />
       <Footer />
